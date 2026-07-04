@@ -15,8 +15,11 @@ export default function Features() {
               Architected for high-volume outbound floors
             </h2>
           </div>
-          <button className="border border-black/10 hover:border-black/30 hover:bg-black/5 text-black px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300">
-            Start Staking Node
+          <button 
+            onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
+            className="border border-black/10 hover:border-black/30 hover:bg-black/5 text-black px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 cursor-pointer"
+          >
+            Deploy Dialer Node
           </button>
         </div>
 
@@ -74,11 +77,14 @@ export default function Features() {
                 A 24/7 technical monitoring layer that instantly switches traffic to hot-standby backup nodes if an upstream carrier hub experiences latency.
               </p>
             </div>
-            <button className="border border-black/10 group-hover:border-black/30 px-5 py-2 rounded-full font-bold text-xs text-black/80 hover:bg-black/5 transition w-fit mt-4 cursor-pointer">
+            <button 
+              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
+              className="border border-black/10 group-hover:border-black/30 px-5 py-2 rounded-full font-bold text-xs text-black/80 hover:bg-black/5 transition w-fit mt-4 cursor-pointer"
+            >
               Trunk Health Monitor
             </button>
           </div>
-
+ 
           {/* Card 4: Bottom Right 2 (SIP Trunking) */}
           <div className="min-h-[14rem] bg-white rounded-[1.5rem] md:rounded-[2rem] p-8 flex flex-col justify-between items-center justify-center overflow-hidden relative group hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 text-center">
             <div className="flex flex-col items-center">
@@ -92,7 +98,10 @@ export default function Features() {
                 Crystal-clear Tier-1 SIP Trunking with whitelisted DIDs.
               </p>
             </div>
-            <div className="w-12 h-12 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 mt-4 cursor-pointer">
+            <div 
+              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
+              className="w-12 h-12 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 mt-4 cursor-pointer"
+            >
               <ArrowUpRight className="w-5 h-5 text-black" />
             </div>
           </div>

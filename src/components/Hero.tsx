@@ -133,11 +133,11 @@ export default function Hero() {
           {/* Right-aligned Request Test Line Button */}
           <button 
             onClick={() => setIsDemoModalOpen(true)}
-            className="hidden md:flex items-center gap-3 bg-[#0a1b3a] hover:bg-[#0f2854] text-white px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
+            className="flex items-center gap-2 bg-[#0a1b3a] hover:bg-[#0f2854] text-white px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer"
           >
-            <span>Request Test Trunk</span>
-            <div className="bg-white/20 p-1.5 rounded-full">
-              <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+            <span>Request Trunk</span>
+            <div className="bg-white/20 p-1 md:p-1.5 rounded-full">
+              <ArrowUpRight className="w-3 md:w-3.5 h-3 md:h-3.5 text-white" />
             </div>
           </button>
         </nav>
@@ -188,7 +188,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Bottom Left Card */}
-        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 flex flex-col items-start gap-3 bg-white/30 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-xl max-w-[260px] text-white">
+        <div className="absolute bottom-6 left-6 right-6 md:right-auto md:bottom-10 md:left-10 z-20 flex flex-col items-start gap-3 bg-white/30 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-xl max-w-[280px] sm:max-w-[260px] text-white mx-auto sm:mx-0">
           <div className="flex flex-col">
             <span className="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Network Capacity</span>
             <span className="text-2xl font-bold tracking-tight">5.2M Daily Minutes</span>
@@ -201,8 +201,8 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* Bottom Right Corner Architectural Cut-out */}
-        <div className="absolute bottom-0 right-0 bg-[#f0f0f0] p-6 pt-8 pl-14 rounded-tl-[3.5rem] z-20 flex items-center gap-4 shadow-[-10px_10px_30px_rgba(0,0,0,0.02)]">
+        {/* Bottom Right Corner Architectural Cut-out (Hidden on Mobile to prevent overlap) */}
+        <div className="hidden md:flex absolute bottom-0 right-0 bg-[#f0f0f0] p-6 pt-8 pl-14 rounded-tl-[3.5rem] z-20 items-center gap-4 shadow-[-10px_10px_30px_rgba(0,0,0,0.02)]">
           {/* Crucial Inverted Corner SVG Trick */}
           {/* Top Inverted Corner */}
           <div className="absolute right-0 bottom-full w-14 h-14 pointer-events-none">
