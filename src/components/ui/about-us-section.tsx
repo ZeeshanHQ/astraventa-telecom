@@ -1,0 +1,339 @@
+import { useEffect, useRef, useState } from "react";
+import {
+  PhoneCall,
+  ShieldCheck,
+  CheckCircle,
+  RefreshCw,
+  DollarSign,
+  Activity,
+  Users,
+  Clock,
+  Zap,
+  TrendingUp,
+  ArrowRight,
+} from "lucide-react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+
+export default function AboutUsSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
+  const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 });
+
+  // Parallax effect for decorative elements
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 20]);
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -20]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
+  };
+
+  const services = [
+    {
+      icon: <PhoneCall className="w-6 h-6" />,
+      title: "Tier-1 SIP Trunking",
+      description:
+        "Connect directly to private, whitelisted US telecom trunks with zero-latency audio routing nodes, bypassing congested public pools completely.",
+      position: "left",
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: "Whitelisted Carrier Pools",
+      description:
+        "Bypass automated 'Spam Likely' filters natively. Our dynamic pools ensure outgoing lines remain clean and whitelisted by major wireless carriers.",
+      position: "left",
+    },
+    {
+      icon: <CheckCircle className="w-6 h-6" />,
+      title: "STIR/SHAKEN Level A",
+      description:
+        "Certified attestation mapped directly at the carrier level, declaring verified business relationships and authorizing telephone usage.",
+      position: "left",
+    },
+    {
+      icon: <RefreshCw className="w-6 h-6" />,
+      title: "Caller ID Rotation",
+      description:
+        "Rotate localized DIDs dynamically matching targeted area codes to optimize outreach efficiency and connection percentages.",
+      position: "right",
+    },
+    {
+      icon: <DollarSign className="w-6 h-6" />,
+      title: "Volume Billing Slabs",
+      description:
+        "No monthly software licenses. Pay purely for network utilization starting at $10. $5 credit yields 250 minutes of talk-time.",
+      position: "right",
+    },
+    {
+      icon: <Activity className="w-6 h-6" />,
+      title: "Fail-Safe Routing",
+      description:
+        "24/7 technical monitoring layer automatically switching call traffic to hot-standby backup nodes if latency occurs.",
+      position: "right",
+    },
+  ];
+
+  const stats = [
+    { icon: <Zap className="w-5 h-5" />, value: 5.2, label: "Daily Routed Minutes", suffix: "M" },
+    { icon: <Users className="w-5 h-5" />, value: 1200, label: "Active Floors", suffix: "+" },
+    { icon: <Clock className="w-5 h-5" />, value: 99.9, label: "Trunk Uptime Guarantee", suffix: "%" },
+    { icon: <TrendingUp className="w-5 h-5" />, value: 100, label: "Attestation Compliance", suffix: "%" },
+  ];
+
+  return (
+    <section
+      id="about-section"
+      ref={sectionRef}
+      className="w-full py-24 px-4 bg-[#f0f0f0] text-[#0a1b3a] overflow-hidden relative border-t border-black/5"
+    >
+      {/* Decorative background elements */}
+      <motion.div
+        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-cyan-600/5 blur-3xl"
+        style={{ y: y1, rotate: rotate1 }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-[#0a1b3a]/5 blur-3xl"
+        style={{ y: y2, rotate: rotate2 }}
+      />
+
+      <motion.div
+        className="container mx-auto max-w-[1536px] relative z-10 px-3 md:px-5"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
+          <motion.span
+            className="text-cyan-600 font-bold mb-2 flex items-center gap-2 text-xs tracking-widest font-mono"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Zap className="w-4 h-4 text-cyan-600" />
+            ENGINEERING CAPABILITIES
+          </motion.span>
+          <h2 className="text-4xl md:text-6xl font-black mb-4 text-center tracking-tight">Core Infrastructure</h2>
+          <motion.div
+            className="w-24 h-1 bg-cyan-600 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          ></motion.div>
+        </motion.div>
+
+        <motion.p className="text-center max-w-2xl mx-auto mb-20 text-[#0a1b3a]/70 font-medium text-sm leading-relaxed" variants={itemVariants}>
+          Managed carrier-grade voice routing designed for high-density sales floors and outbound outreach campaigns. Backed by the advanced engineering division of Astraventa.
+        </motion.p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative items-center">
+          {/* Left Column */}
+          <div className="space-y-12">
+            {services
+              .filter((service) => service.position === "left")
+              .map((service, index) => (
+                <ServiceItem
+                  key={`left-${index}`}
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  variants={itemVariants}
+                  delay={index * 0.2}
+                />
+              ))}
+          </div>
+
+          {/* Center Image */}
+          <div className="flex justify-center items-center order-first lg:order-none mb-8 lg:mb-0">
+            <motion.div className="relative w-full max-w-sm" variants={itemVariants}>
+              <motion.div
+                className="rounded-[2rem] overflow-hidden shadow-xl border border-black/5 bg-white p-4"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=3000&auto=format&fit=crop"
+                  alt="Astraventa Operations"
+                  className="w-full h-[320px] object-cover rounded-[1.5rem]"
+                />
+              </motion.div>
+              <motion.div
+                className="absolute inset-0 border-4 border-cyan-600/20 rounded-[2rem] -m-3 z-[-1]"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              ></motion.div>
+            </motion.div>
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-12">
+            {services
+              .filter((service) => service.position === "right")
+              .map((service, index) => (
+                <ServiceItem
+                  key={`right-${index}`}
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  variants={itemVariants}
+                  delay={index * 0.2}
+                />
+              ))}
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <motion.div
+          ref={statsRef}
+          className="mt-28 grid grid-cols-2 lg:grid-cols-4 gap-4"
+          initial="hidden"
+          animate={isStatsInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
+          {stats.map((stat, index) => (
+            <StatCounter
+              key={index}
+              icon={stat.icon}
+              value={stat.value}
+              label={stat.label}
+              suffix={stat.suffix}
+              delay={index * 0.1}
+            />
+          ))}
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="mt-20 bg-[#0a1b3a] text-white p-8 md:p-12 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <div className="flex-1">
+            <h3 className="text-2xl md:text-3xl font-black mb-2 tracking-tight">Ready to integrate dynamic voice trunks?</h3>
+            <p className="text-white/70 font-medium">We config everything within 5 minutes. Initial setup is $10.</p>
+          </div>
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
+            className="bg-white hover:bg-white/90 text-[#0a1b3a] px-8 py-4 rounded-xl flex items-center gap-2 font-bold text-sm transition-colors cursor-pointer"
+          >
+            Managed Onboarding <ArrowRight className="w-4 h-4" />
+          </button>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+interface ServiceItemProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  variants: any;
+  delay: number;
+}
+
+function ServiceItem({ icon, title, description, variants, delay }: ServiceItemProps) {
+  return (
+    <motion.div
+      className="flex flex-col group"
+      variants={variants}
+      transition={{ delay }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+    >
+      <div className="flex items-center gap-3.5 mb-3">
+        <div className="text-cyan-600 bg-cyan-50 border border-cyan-100 p-2.5 rounded-xl transition-colors duration-300 group-hover:bg-cyan-100">
+          {icon}
+        </div>
+        <h3 className="text-lg font-black text-[#0a1b3a]">
+          {title}
+        </h3>
+      </div>
+      <p className="text-xs text-[#0a1b3a]/75 leading-relaxed pl-12 font-semibold">
+        {description}
+      </p>
+    </motion.div>
+  );
+}
+
+interface StatCounterProps {
+  icon: React.ReactNode;
+  value: number;
+  label: string;
+  suffix: string;
+  delay: number;
+}
+
+function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
+  const countRef = useRef(null);
+  const isInView = useInView(countRef, { once: true });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const end = value;
+      if (start === end) return;
+
+      const increment = end > 30 ? Math.ceil(end / 40) : end / 40;
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          clearInterval(timer);
+          setDisplayValue(end);
+        } else {
+          setDisplayValue(Number(start.toFixed(1)));
+        }
+      }, 30);
+
+      return () => clearInterval(timer);
+    }
+  }, [isInView, value]);
+
+  return (
+    <motion.div
+      className="bg-white/50 backdrop-blur-sm p-6 rounded-2xl flex flex-col items-center text-center group hover:bg-white transition-colors duration-300 border border-black/5"
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, delay },
+        },
+      }}
+    >
+      <div className="w-12 h-12 rounded-full bg-[#0a1b3a]/5 flex items-center justify-center mb-4 text-cyan-600 group-hover:bg-cyan-50 transition-colors duration-300 border border-black/5">
+        {icon}
+      </div>
+      <div ref={countRef} className="text-2xl md:text-3xl font-black text-[#0a1b3a] flex items-center tracking-tight">
+        <span>{displayValue}</span>
+        <span>{suffix}</span>
+      </div>
+      <p className="text-black/50 text-[10px] uppercase font-bold tracking-wider mt-1 font-mono">{label}</p>
+    </motion.div>
+  );
+}

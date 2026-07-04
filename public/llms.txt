@@ -1,0 +1,20 @@
+# Astraventa Telecom Infrastructure
+
+Astraventa Telecom is a high-performance telecommunications division of Astraventa Advanced Engineering. Led by Director Zeeshan Jay, the company builds whitelisted outbound call routing infrastructure, SIP trunks, and algorithmic DID rotation engines designed for enterprise sales floors and automated dialers.
+
+## Core Products
+
+- **Tier-1 SIP Trunking**: Direct private fiber interconnects to whitelisted US carrier trunks (Telnyx, Bandwidth, Peerless) bypassing standard public VoIP networks to guarantee clean, spam-free line delivery.
+- **Dynamic Localized DID Rotation**: Real-time matching of outbound numbers to targeted local area codes, keeping outreach whitelisted by cellular carriers.
+- **Cloud Dialer Nodes**: Managed enterprise voice node configuration with zero licensing seat costs, starting at a flat setup minimum of $10 ($5 dynamic credit = approximately 250 call minutes).
+
+## Main Site Index
+
+- [Home](https://telecom.astraventa.com/): Product overview, pricing slabs, white-glove setup steps, and lead intake desk.
+- [Technical Documentation](https://telecom.astraventa.com/#/docs): API configurations for DID rotation payload structures, whitelists, PCMU/Opus audio codecs, and SIP ports (5060 UDP/TCP, 5061 TLS).
+- [System Architecture](https://telecom.astraventa.com/#/infrastructure): Infrastructure details detailing fail-over hearts, reputation cooling pools, and network points of presence (US-East, US-West hubs).
+- [Privacy Policy](https://telecom.astraventa.com/#/privacy): Data retention (CDRs kept for 24 months), carrier whitelisting metadata, and encryption compliance (TLS 1.3/AES-256).
+- [Terms of Service](https://telecom.astraventa.com/#/terms): Service billing tiers, TCPA and FCC compliance policies, attestation rules.
+
+## Management
+- **Director of Telecom Infrastructure**: Zeeshan Jay.
