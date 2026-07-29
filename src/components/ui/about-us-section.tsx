@@ -17,7 +17,6 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 export default function AboutUsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
   const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 });
 
   // Parallax effect for decorative elements
@@ -120,13 +119,14 @@ export default function AboutUsSection() {
       />
 
       <motion.div
-        className="container mx-auto max-w-[1536px] relative z-10 px-3 md:px-5"
+        className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-28 md:py-44"
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
-          <h2 className="text-3xl md:text-4xl font-light mb-4 text-center tracking-tight">Core Infrastructure</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-center tracking-tight">Core Infrastructure</h2>
           <motion.div
             className="w-24 h-1 bg-cyan-600 rounded-full"
             initial={{ width: 0 }}

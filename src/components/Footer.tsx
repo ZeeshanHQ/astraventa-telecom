@@ -18,7 +18,7 @@ function scrollTo(id: string) {
 export default function Footer() {
   return (
     <footer className="w-full bg-[#f0f0f0]">
-      <div className="w-full max-w-[1536px] mx-auto px-6 md:px-12 py-16 border-t border-black/15 flex flex-col md:flex-row justify-between gap-12">
+      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-24 border-t border-black/15 flex flex-col md:flex-row justify-between gap-12">
         
         {/* Left Side: Logo + Description */}
         <div className="flex flex-col max-w-sm gap-5">
@@ -133,7 +133,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright bar */}
-      <div className="w-full max-w-[1536px] mx-auto px-6 md:px-12 py-6 border-t border-black/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-black/40 font-bold">
+      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-6 border-t border-black/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-black/40 font-bold">
         <span>&copy; 2026 Astraventa. All rights reserved.</span>
         <div className="flex gap-6 items-center flex-wrap">
           <a href="#/privacy" className="hover:text-black transition-colors">Privacy Policy</a>

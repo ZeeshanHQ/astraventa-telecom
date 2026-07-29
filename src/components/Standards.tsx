@@ -54,12 +54,12 @@ export default function Standards() {
   };
 
   return (
-    <section id="standards" className="w-full bg-[#f0f0f0] py-16 md:py-28 px-3 md:px-5">
-      <div className="w-full max-w-[1536px] mx-auto">
+    <section id="standards" className="w-full bg-[#f0f0f0] py-28 md:py-44 px-4 md:px-8">
+      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12">
         
         {/* Section Header */}
-        <div className="mb-14 max-w-[700px]">
-          <h2 className="text-2xl md:text-4xl font-light text-black tracking-tight mb-4">
+        <div className="mb-16 max-w-[700px]">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-black tracking-tight mb-4">
             How we specify performance
           </h2>
           <p className="text-sm text-black/60 leading-relaxed font-medium">

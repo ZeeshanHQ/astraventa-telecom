@@ -2,8 +2,8 @@ import { ArrowRight, PhoneCall } from "lucide-react";
 
 export default function CTA() {
   return (
-    <div className="w-full flex items-center justify-center p-3 md:p-5 bg-[#f0f0f0]">
-      <section className="relative w-full max-w-[1536px] min-h-[500px] md:min-h-[620px] rounded-[1.5rem] md:rounded-[3rem] overflow-hidden flex flex-col items-center justify-center group py-20 px-6">
+    <div className="w-full flex items-center justify-center p-4 md:p-8 bg-[#f0f0f0]">
+      <section className="relative w-full max-w-[1720px] min-h-[500px] md:min-h-[620px] rounded-[1.5rem] md:rounded-[3rem] overflow-hidden flex flex-col items-center justify-center group py-28 px-12">
         
         {/* Background Video */}
         <video
@@ -24,7 +24,7 @@ export default function CTA() {
 
         {/* CTA Content Layer */}
         <div className="relative z-10 text-center flex flex-col items-center justify-center max-w-[700px] text-white">
-          <h2 className="text-3xl md:text-5xl font-light text-white tracking-tight mb-10 leading-[1.1] max-w-[15ch]">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-10 leading-[1.1] max-w-[15ch]">
             Melt legacy licensing into fluid call routing.
           </h2>
 

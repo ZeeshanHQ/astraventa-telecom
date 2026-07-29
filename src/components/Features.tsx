@@ -2,13 +2,13 @@ import { RefreshCw, DollarSign, ArrowUpRight } from "lucide-react";
 
 export default function Features() {
   return (
-    <div className="w-full bg-[#f0f0f0] py-12 px-3 md:px-5">
-      <div className="w-full max-w-[1536px] mx-auto">
+    <div className="w-full bg-[#f0f0f0] py-28 md:py-44 px-4 md:px-8">
+      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
           <div>
-            <h2 className="text-2xl md:text-4xl font-light text-black tracking-tight max-w-[20ch]">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-black tracking-tight max-w-[20ch]">
               Architected for high-volume outbound floors
             </h2>
           </div>

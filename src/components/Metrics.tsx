@@ -55,7 +55,7 @@ export default function Metrics() {
   };
 
   return (
-    <div id="infrastructure" className="w-full max-w-[1536px] mx-auto px-3 md:px-5 py-6 md:py-12 bg-[#f0f0f0]">
+    <div id="infrastructure" className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-12 md:py-24 bg-[#f0f0f0]">
       <div className="bg-[rgba(30,50,90,0.02)] border border-[rgba(30,50,90,0.05)] rounded-[1.5rem] md:rounded-[3rem] p-8 md:p-16">
         
         <motion.div
