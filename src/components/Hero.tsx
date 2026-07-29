@@ -164,6 +164,25 @@ export default function Hero() {
           >
             High-throughput SIP trunks and dynamic Caller ID rotation managed by Astraventa. Fully configured by our engineers in under 5 minutes. Initial setup starts from $10.
           </motion.p>
+
+          {/* Action Buttons Group */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex items-center gap-4 mt-6 flex-wrap justify-center"
+          >
+            <button
+              onClick={() => setIsDemoModalOpen(true)}
+              className="bg-white hover:bg-white/95 text-[#0a1b3a] px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md active:scale-95 cursor-pointer"
+            >
+              Request Free Demo
+            </button>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
+              className="bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 active:scale-95 cursor-pointer"
+            >
+              Deploy Starter Node
+            </button>
+          </motion.div>
         </motion.div>
 
         {/* Bottom Left Card */}
