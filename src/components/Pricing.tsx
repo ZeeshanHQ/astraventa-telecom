@@ -7,10 +7,7 @@ export default function Pricing() {
         
         {/* Header */}
         <div className="text-center mb-16 max-w-[800px] mx-auto">
-          <span className="text-xs uppercase tracking-widest text-black/40 font-bold block mb-2 font-mono">
-            Commercial Slabs
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight mb-4">
+          <h2 className="text-2xl md:text-4xl font-light text-black tracking-tight mb-4">
             Transparent usage billing
           </h2>
           <p className="text-sm text-black/60 leading-relaxed font-medium">

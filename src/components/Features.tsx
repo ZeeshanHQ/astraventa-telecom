@@ -8,10 +8,7 @@ export default function Features() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
           <div>
-            <span className="text-xs uppercase tracking-widest text-black/40 font-bold block mb-2 font-mono">
-              Infrastructure Nodes
-            </span>
-            <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight max-w-[20ch]">
+            <h2 className="text-2xl md:text-4xl font-light text-black tracking-tight max-w-[20ch]">
               Architected for high-volume outbound floors
             </h2>
           </div>

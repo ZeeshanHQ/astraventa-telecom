@@ -57,11 +57,8 @@ export default function Setup() {
       <div className="w-full max-w-[1536px] mx-auto">
         
         {/* Header */}
-        <div className="text-center mb-20 max-w-[800px] mx-auto flex flex-col items-center">
-          <span className="text-xs uppercase tracking-widest text-black/40 font-bold block mb-2 font-mono">
-            Onboarding Flow
-          </span>
-          <h2 className="text-4xl md:text-6xl font-black text-black tracking-tight mb-4 leading-none">
+        <div className="text-center mb-16 max-w-[800px] mx-auto flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-light text-black tracking-tight mb-4 leading-none">
             5-minute setup
           </h2>
           <p className="text-sm text-black/60 leading-relaxed font-medium max-w-[600px]">

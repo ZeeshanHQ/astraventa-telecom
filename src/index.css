@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: "Space Grotesk", sans-serif;
 }
 
 :root {
@@ -20,13 +20,13 @@ body {
 }
 
 /* Apply new fonts to semantic tags to ensure global coverage */
-h1, h2 {
-  font-family: var(--font-heading);
-  font-weight: 800;
+h1, h2, h3 {
+  font-family: var(--font-heading) !important;
+  font-weight: 300; /* Keeping it thin / light for premium minimal feel */
 }
 
-h3, h4 {
-  font-family: var(--font-heading);
+h4 {
+  font-family: var(--font-sans) !important;
   font-weight: 600;
 }
 

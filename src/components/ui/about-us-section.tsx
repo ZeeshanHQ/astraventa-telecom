@@ -126,16 +126,7 @@ export default function AboutUsSection() {
         variants={containerVariants}
       >
         <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
-          <motion.span
-            className="text-cyan-600 font-bold mb-2 flex items-center gap-2 text-xs tracking-widest font-mono"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Zap className="w-4 h-4 text-cyan-600" />
-            ENGINEERING CAPABILITIES
-          </motion.span>
-          <h2 className="text-4xl md:text-6xl font-black mb-4 text-center tracking-tight">Core Infrastructure</h2>
+          <h2 className="text-3xl md:text-4xl font-light mb-4 text-center tracking-tight">Core Infrastructure</h2>
           <motion.div
             className="w-24 h-1 bg-cyan-600 rounded-full"
             initial={{ width: 0 }}

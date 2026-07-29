@@ -59,10 +59,7 @@ export default function Standards() {
         
         {/* Section Header */}
         <div className="mb-14 max-w-[700px]">
-          <span className="text-xs uppercase tracking-widest text-black/40 font-bold block mb-2 font-mono">
-            Carrier Philosophy
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight mb-4">
+          <h2 className="text-2xl md:text-4xl font-light text-black tracking-tight mb-4">
             How we specify performance
           </h2>
           <p className="text-sm text-black/60 leading-relaxed font-medium">

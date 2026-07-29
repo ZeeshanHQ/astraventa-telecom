@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Sparkles, ChevronRight, ArrowUpRight, CheckCircle } from "lucide-react";
+import { ChevronRight, ArrowUpRight, CheckCircle } from "lucide-react";
 
 export default function Hero() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -149,33 +149,10 @@ export default function Hero() {
           animate="show"
           className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 max-w-[950px] mb-20 md:mb-32"
         >
-          {/* HeroBadge — thin premium pill */}
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center gap-0 mb-10 max-w-full px-2"
-          >
-            {/* Left accent line */}
-            <div className="hidden sm:block w-8 h-px bg-white/40" />
-            <div className="flex items-center gap-2 border border-white/20 bg-white/8 backdrop-blur-sm px-3 sm:px-4 py-1.5 mx-1 sm:mx-2 rounded-sm max-w-full overflow-hidden">
-              {/* Signal dot */}
-              <span className="relative flex h-1.5 w-1.5 flex-shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
-              </span>
-              <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] font-bold text-white/80 font-mono whitespace-nowrap overflow-hidden text-ellipsis">
-                Astraventa Telecom Infrastructure
-              </span>
-              {/* Right micro arrow */}
-              <Sparkles className="w-3 h-3 text-cyan-400/70 flex-shrink-0" />
-            </div>
-            {/* Right accent line */}
-            <div className="hidden sm:block w-8 h-px bg-white/40" />
-          </motion.div>
-
           {/* Main Headline */}
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight mb-6 select-none leading-none text-white drop-shadow-lg max-w-full"
+            className="text-4xl sm:text-5xl md:text-7xl font-light tracking-tight mb-4 select-none leading-[1.1] text-white drop-shadow-lg max-w-full"
           >
             Carrier-Grade Voice Routing.
           </motion.h1>
@@ -183,7 +160,7 @@ export default function Hero() {
           {/* Sub-headline */}
           <motion.p 
             variants={itemVariants}
-            className="text-white/95 text-sm sm:text-base md:text-xl font-normal leading-relaxed max-w-[700px] drop-shadow-md px-2"
+            className="text-white/90 text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-[550px] drop-shadow-md px-4"
           >
             High-throughput SIP trunks and dynamic Caller ID rotation managed by Astraventa. Fully configured by our engineers in under 5 minutes. Initial setup starts from $10.
           </motion.p>
