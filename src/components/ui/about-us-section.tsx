@@ -106,7 +106,7 @@ export default function AboutUsSection() {
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-24 px-4 bg-[#f0f0f0] text-[#0a1b3a] overflow-hidden relative border-t border-black/5"
+      className="w-full py-8 px-4 bg-[#f0f0f0] text-[#0a1b3a] overflow-hidden relative border-t border-black/5"
     >
       {/* Decorative background elements */}
       <motion.div
@@ -119,14 +119,14 @@ export default function AboutUsSection() {
       />
 
       <motion.div
-        className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-28 md:py-44"
+        className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-8 md:py-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
         <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-center tracking-tight">Core Infrastructure</h2>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-center tracking-tight">Core Infrastructure</h2>
           <motion.div
             className="w-24 h-1 bg-cyan-600 rounded-full"
             initial={{ width: 0 }}

@@ -147,12 +147,12 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 max-w-[950px] mb-28 md:mb-44"
+          className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 max-w-[950px] mb-14 md:mb-20"
         >
           {/* Main Headline */}
           <motion.h1 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-4 select-none leading-[1.1] text-white drop-shadow-lg max-w-full"
+            className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight mb-4 select-none leading-[1.1] text-white drop-shadow-lg max-w-full"
           >
             Carrier-Grade Voice Routing.
           </motion.h1>
