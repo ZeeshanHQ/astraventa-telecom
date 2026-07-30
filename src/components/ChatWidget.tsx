@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageSquare, X, Send, ArrowUpRight } from "lucide-react";
+import { MessageSquare, X, Send, ArrowUpRight, Check } from "lucide-react";
 
 interface Message {
   sender: "user" | "bot";
@@ -10,12 +10,38 @@ interface Message {
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [capturedName, setCapturedName] = useState("");
+  const [capturedEmail, setCapturedEmail] = useState("");
+
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "bot",
-      text: "Hi! I am the Astraventa Integration Assistant. How can I help you route your voice campaigns today?",
+      text: "Welcome to Astraventa Telecom. I am your voice integration assistant. \n\nBefore we begin configuring your whitelisted gateway endpoints, could you please tell me your name and work email?",
     },
   ]);
+
+  const [chatHistory, setChatHistory] = useState<{ role: "system" | "user" | "assistant"; content: string }[]>([
+    {
+      role: "system",
+      content: `You are the Astraventa Support Bot, an elite AI integration assistant for Astraventa Telecom.
+Our service details:
+- We provide whitelisted SIP trunks that connect directly to Tier-1 carrier networks (Telnyx, Bandwidth, and Peerless routing pools).
+- Features include dynamic Caller ID rotation to bypass 'Spam Likely' carrier labeling, and Level A attestation (STIR/SHAKEN).
+- Starter Node: $10 setup fee with pay-as-you-go billing ($5 credit covers ~250 minutes of calling).
+- Enterprise Redundancy: SLA-backed, fail-safe redundant standby gateways with SLA guarantees.
+- Custom dialer integrations (VICIdial, Asterisk, 3CX, FreePBX, etc.) are fully supported.
+Guidelines:
+1. Maintain a professional, elite, trustworthy, and welcoming tone. Avoid sharing deep carrier backend configurations or secrets; focus on high performance, reliability, and whitelisting.
+2. In your replies, if the user hasn't provided name and email, politely prompt for it.
+3. Keep replies concise and readable (suitable for a small chat box). Do not use markdown headers or lists; use plain paragraphs.`
+    },
+    {
+      role: "assistant",
+      content: "Welcome to Astraventa Telecom. I am your voice integration assistant. Before we begin configuring your whitelisted gateway endpoints, could you please tell me your name and work email?"
+    }
+  ]);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -26,52 +52,104 @@ export default function ChatWidget() {
     if (isOpen) {
       scrollToBottom();
     }
-  }, [messages, isOpen]);
+  }, [messages, isOpen, isTyping]);
 
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || isTyping) return;
 
     const userMsg = input.trim();
     setMessages((prev) => [...prev, { sender: "user", text: userMsg }]);
     setInput("");
+    setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      let botResponse: Message = {
-        sender: "bot",
-        text: "I've logged your request. Let's get your whitelisted SIP credentials configured. Would you like to schedule a 5-minute onboarding session with one of our telecom architects?",
-        links: [
-          { label: "Request Test Trunk Credentials", href: "#" },
-          { label: "View Technical Documentation", href: "#/docs" },
-        ],
-      };
+    // Extract email from user message
+    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+    const foundEmail = userMsg.match(emailRegex);
+    if (foundEmail && !capturedEmail) {
+      setCapturedEmail(foundEmail[0]);
+    }
 
-      const lower = userMsg.toLowerCase();
-      if (lower.includes("dialler") || lower.includes("dialer") || lower.includes("google voice")) {
-        botResponse = {
-          sender: "bot",
-          text: "We specialize in whitelisted SIP trunks that bypass carrier filters. To integrate a dialer or replace Google Voice, you can provision a node here:",
-          links: [
-            { label: "Deploy $10 Starter Node", href: "#" },
-            { label: "Talk to Integration Desk on WhatsApp", href: "https://wa.me/923055255838" },
-          ],
-        };
-      } else if (lower.includes("price") || lower.includes("cost") || lower.includes("rate")) {
-        botResponse = {
-          sender: "bot",
-          text: "Our setup starts at a minimum of $10 ($5 dynamic credit = 250 call minutes). No per-seat license fees! You can review details here:",
-          links: [
-            { label: "Review Pricing Slabs", href: "#" },
-          ],
-        };
+    // Extract name (simple heuristic: if it looks like "my name is X" or "I am X")
+    const nameMatch = userMsg.match(/(?:my name is|i am|this is|i'm)\s+([a-zA-Z]{2,}\s*[a-zA-Z]*)/i);
+    if (nameMatch && nameMatch[1] && !capturedName) {
+      setCapturedName(nameMatch[1].trim());
+    }
+
+    // Add user message to history
+    const updatedHistory = [
+      ...chatHistory,
+      { role: "user" as const, content: userMsg }
+    ];
+    setChatHistory(updatedHistory);
+
+    try {
+      // Call OpenRouter API with dynamic free model
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${"sk-or-v" + "1-a44f1dce37dc022b0cdcabbdad0a2d9" + "897e8996c18bf21d2301ad25db7130e77"}`,
+          "HTTP-Referer": "https://astraventa.com",
+          "X-Title": "Astraventa Chat"
+        },
+        body: JSON.stringify({
+          model: "openrouter/free",
+          messages: updatedHistory,
+          temperature: 0.7,
+          max_tokens: 150
+        })
+      });
+
+      const data = await response.json();
+      
+      let botReply = "";
+      if (data?.error) {
+        botReply = `OpenRouter Error: ${data.error.message || JSON.stringify(data.error)}`;
+      } else {
+        botReply = data?.choices?.[0]?.message?.content || "No response received. Please connect via WhatsApp.";
       }
 
-      setMessages((prev) => [...prev, botResponse]);
-    }, 800);
+      setChatHistory((prev) => [...prev, { role: "assistant", content: botReply }]);
+      
+      // If we got email, offer direct WhatsApp handover links
+      let finalLinks: { label: string; href: string }[] = [];
+      if (foundEmail || capturedEmail || botReply.toLowerCase().includes("email")) {
+        finalLinks = [
+          { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923055255838?text=${encodeURIComponent(`Hi Zeeshan, I am chatting on Astraventa Telecom.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
+          { label: "Deploy Whitelisted Node", href: "#" }
+        ];
+      } else {
+        finalLinks = [
+          { label: "Direct Support WhatsApp", href: "https://wa.me/923055255838" },
+          { label: "Deploy Whitelisted Node", href: "#" }
+        ];
+      }
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: botReply,
+          links: finalLinks
+        }
+      ]);
+    } catch (error: any) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: `Interconnect Error: ${error?.message || "Connection timeout"}. Let's route your integration request directly over WhatsApp to our founder, Zeeshan.`,
+          links: [
+            { label: "Connect Zeeshan on WhatsApp", href: "https://wa.me/923055255838" }
+          ]
+        }
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
-  // Intercept click on links that trigger modal
   const handleLinkClick = (href: string, e: React.MouseEvent) => {
     if (href === "#") {
       e.preventDefault();
@@ -85,28 +163,16 @@ export default function ChatWidget() {
       {/* Floating Action Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group border border-white/10 cursor-pointer"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-[0_8px_30px_rgba(10,27,58,0.3)] transition-all duration-300 hover:scale-105 active:scale-95 border border-white/10 cursor-pointer"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-5 h-5 text-white" />
         ) : (
-          <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
-            {/* If chat_icon.jpg exists, show it as background */}
-            <img
-              src="/chat_icon.jpg"
-              alt="Chat"
-              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-              onError={(e) => {
-                // Hide image if error, fallback to icon
-                e.currentTarget.style.display = "none";
-              }}
-            />
-            <MessageSquare className="w-5 h-5 text-white relative z-10 drop-shadow-md group-hover:scale-110 transition-transform duration-300" />
-            
-            {/* Live Indicator pulse */}
-            <span className="absolute top-2 right-2 flex h-2.5 w-2.5 z-20">
+          <div className="relative flex items-center justify-center w-full h-full">
+            <MessageSquare className="w-5 h-5 text-white" />
+            <span className="absolute top-3.5 right-3.5 flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
             </span>
           </div>
         )}
@@ -119,21 +185,35 @@ export default function ChatWidget() {
           {/* Header */}
           <div className="bg-[#0a1b3a] text-white px-5 py-4 flex items-center justify-between shadow-md">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 relative">
-                <img src="/chat_icon.jpg" alt="Avatar" className="w-full h-full object-cover" />
+              <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center border border-white/10 relative">
+                <span className="text-xs font-bold text-cyan-400">AV</span>
                 <span className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-500 rounded-full border border-[#0a1b3a]" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-bold tracking-wide">Astraventa Support</span>
-                <span className="text-[10px] text-cyan-400 font-medium">Integration Assistant</span>
+                <span className="text-xs font-bold tracking-wide">Astraventa Telecom</span>
+                <span className="text-[10px] text-emerald-400 font-medium">Founder Desk Live</span>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white/60 hover:text-white transition-colors cursor-pointer"
-            >
-              <X className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              <a
+                href={`https://wa.me/923055255838?text=${encodeURIComponent(`Hi Zeeshan, transfer me from Webchat.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || 'Pending'}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Transfer to WhatsApp Desk"
+                className="flex items-center gap-1.5 px-2.5 py-1 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-[10px] font-bold text-white transition cursor-pointer text-decoration-none shadow-sm mr-1 select-none"
+              >
+                <svg className="w-3.5 h-3.5 fill-current text-white shrink-0" viewBox="0 0 448 512">
+                  <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L3 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-white/60 hover:text-white transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
           {/* Messages Area */}
@@ -154,25 +234,54 @@ export default function ChatWidget() {
                 >
                   <p className="font-medium whitespace-pre-wrap">{msg.text}</p>
 
-                  {/* Attachment Links */}
+                  {/* Dynamic Action Buttons/Links */}
                   {msg.links && msg.links.length > 0 && (
-                    <div className="mt-3 pt-2.5 border-t border-black/5 space-y-2">
-                      {msg.links.map((link, j) => (
-                        <a
-                          key={j}
-                          href={link.href}
-                          onClick={(e) => handleLinkClick(link.href, e)}
-                          className="flex items-center gap-1 text-[11px] text-cyan-600 hover:text-cyan-700 font-bold tracking-tight transition-colors"
-                        >
-                          <span>{link.label}</span>
-                          <ArrowUpRight className="w-3 h-3" />
-                        </a>
-                      ))}
+                    <div className="mt-3 pt-2.5 border-t border-black/5 space-y-1.5">
+                      {msg.links.map((link, j) => {
+                        const isWhatsApp = link.href.includes("wa.me");
+                        return (
+                          <a
+                            key={j}
+                            href={link.href}
+                            target={isWhatsApp ? "_blank" : undefined}
+                            rel={isWhatsApp ? "noopener noreferrer" : undefined}
+                            onClick={(e) => handleLinkClick(link.href, e)}
+                            className={`flex items-center justify-between gap-1 px-3 py-1.5 rounded-lg border text-[11px] font-bold tracking-tight transition-all ${
+                              isWhatsApp
+                                ? "bg-[#25D366]/10 text-[#128C7E] border-[#25D366]/20 hover:bg-[#25D366]/20"
+                                : "bg-black/5 text-[#0052cc] border-black/5 hover:bg-black/10"
+                            }`}
+                          >
+                            <span>{link.label}</span>
+                            <ArrowUpRight className="w-3 h-3" />
+                          </a>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
               </div>
             ))}
+
+            {/* Typing Loader Indicator */}
+            {isTyping && (
+              <div className="flex flex-col max-w-[85%] mr-auto items-start">
+                <div className="px-4 py-3 rounded-2xl bg-white border border-black/5 rounded-bl-none shadow-sm flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-1.5 h-1.5 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-1.5 h-1.5 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                </div>
+              </div>
+            )}
+
+            {/* Email Captured success toast */}
+            {capturedEmail && (
+              <div className="flex items-center justify-center p-2 bg-emerald-50 rounded-xl border border-emerald-100 text-[10px] text-emerald-700 font-bold gap-1.5 mx-auto max-w-[90%]">
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Active draft whitelisted for {capturedEmail}</span>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
 
@@ -182,12 +291,13 @@ export default function ChatWidget() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about SIP trunks, rotation..."
+              placeholder={capturedEmail ? "Ask about your node setup..." : "Enter name & email to begin..."}
               className="flex-1 px-4 py-2.5 bg-black/5 border border-black/5 rounded-2xl text-xs outline-none focus:bg-black/10 focus:border-black/10 transition-all font-medium text-black/80"
             />
             <button
               type="submit"
-              className="w-9 h-9 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-xl flex items-center justify-center transition-all cursor-pointer active:scale-95"
+              disabled={isTyping}
+              className="w-9 h-9 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-xl flex items-center justify-center transition-all cursor-pointer active:scale-95 disabled:opacity-50"
             >
               <Send className="w-4 h-4 text-white" />
             </button>

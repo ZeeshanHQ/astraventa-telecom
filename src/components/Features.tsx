@@ -2,7 +2,7 @@ import { RefreshCw, DollarSign, ArrowUpRight } from "lucide-react";
 
 export default function Features() {
   return (
-    <div className="w-full bg-[#f0f0f0] py-8 md:py-12 px-4 md:px-8">
+    <div className="w-full bg-[#f9fafb] py-8 md:py-12 px-4 md:px-8">
       <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12">
         
         {/* Header Section */}

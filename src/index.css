@@ -14,15 +14,15 @@
 body {
   margin: 0;
   overflow-x: hidden;
-  background-color: #f0f0f0;
+  background-color: #f9fafb;
   color: #0d0e12;
   font-family: var(--font-sans);
 }
 
-/* Apply Option 1: Plus Jakarta Sans for H1/H2 (Sleek/600), and H3/H4 (SemiBold/600) */
+/* Apply Option 1: Plus Jakarta Sans for H1/H2 (Bold/700), and H3/H4 (SemiBold/600) */
 h1, h2 {
   font-family: var(--font-heading) !important;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 h3, h4 {

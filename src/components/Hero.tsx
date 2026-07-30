@@ -7,12 +7,20 @@ export default function Hero() {
   const [result, setResult] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formDataState, setFormDataState] = useState<{ name: string; email: string; message: string } | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<"starter" | "enterprise">("starter");
+  const [formDataState, setFormDataState] = useState<{
+    name: string;
+    email: string;
+    message: string;
+    plan: string;
+    volume: string;
+    dialer: string;
+  } | null>(null);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setResult("Sending...");
+    setResult("Registering gateway endpoints...");
     
     const target = event.currentTarget;
     const formData = new FormData(target);
@@ -25,31 +33,42 @@ export default function Hero() {
       return;
     }
 
-    formData.append("access_key", "294ece96-57e5-4b74-9dff-ed7204514f19");
-    formData.append("subject", "New Lead - Astraventa Telecom Request");
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string || "None";
+    const volume = formData.get("volume") as string || "Not specified";
+    const dialer = formData.get("dialer") as string || "Not specified";
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://hqywadiibynypygskyif.supabase.co/functions/v1/telecom-leads-submit", {
         method: "POST",
-        body: formData
+        headers: {
+          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          plan_type: selectedPlan,
+          call_volume: volume,
+          dialer_software: dialer,
+          message: message
+        })
       });
 
       const data = await response.json();
-      if (data.success) {
-        const name = formData.get("name") as string;
-        const email = formData.get("email") as string;
-        const message = formData.get("message") as string || "None";
-        
-        setFormDataState({ name, email, message });
+      if (response.ok && data.success) {
+        setFormDataState({ name, email, message, plan: selectedPlan, volume, dialer });
         setIsSubmitted(true);
         setResult("");
         target.reset();
       } else {
-        setResult("Submission error. Please try again.");
+        setResult(`Submission Error: ${data.error || "Please try again."}`);
         setIsSubmitting(false);
       }
-    } catch (error) {
-      setResult("Network error. Please try again.");
+    } catch (error: any) {
+      setResult(`Connection Error: ${error?.message || "Please try again."}`);
       setIsSubmitting(false);
     }
   };
@@ -235,9 +254,20 @@ export default function Hero() {
       {/* Request Test Trunk Modal */}
       {isDemoModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative border border-black/5 animate-in fade-in zoom-in duration-200">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] overflow-y-auto shadow-2xl relative border border-black/5 animate-in fade-in zoom-in duration-200">
+            
+            {/* Close Button Top Right */}
+            <button
+              onClick={() => setIsDemoModalOpen(false)}
+              className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/5 cursor-pointer z-20"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
             {isSubmitted ? (
-              <div className="text-center py-4 animate-in fade-in zoom-in duration-200">
+              <div className="text-center p-12 max-w-md mx-auto animate-in fade-in zoom-in duration-200">
                 <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-200">
                   <CheckCircle className="w-8 h-8 text-emerald-600" />
                 </div>
@@ -248,9 +278,12 @@ export default function Hero() {
                 <div className="space-y-3">
                   <a
                     href={`https://wa.me/923055255838?text=${encodeURIComponent(
-                      `Hi Astraventa Team, I've requested a test trunk.\n\n` +
+                      `Hi Astraventa Team, I've requested a voice trunk setup.\n\n` +
                       `• *Name:* ${formDataState?.name}\n` +
                       `• *Email:* ${formDataState?.email}\n` +
+                      `• *Plan:* ${formDataState?.plan?.toUpperCase()}\n` +
+                      `• *Est. Volume:* ${formDataState?.volume}\n` +
+                      `• *Dialer:* ${formDataState?.dialer}\n` +
                       `• *Notes:* ${formDataState?.message || "None"}`
                     )}`}
                     target="_blank"
@@ -272,40 +305,166 @@ export default function Hero() {
                 </div>
               </div>
             ) : (
-              <>
-                <h3 className="text-2xl font-bold text-black mb-2">Request a Test Trunk</h3>
-                <p className="text-black/60 text-sm mb-6">Schedule a session with an integration engineer to deploy whitelisted telecom nodes.</p>
-                <form onSubmit={onSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-5">
+                
+                {/* Left Pane: Plan Option Selector */}
+                <div className="col-span-2 bg-slate-50/70 p-8 border-b md:border-b-0 md:border-r border-black/5 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-black mb-1 font-sans tracking-tight">Integration Plan</h3>
+                    <p className="text-xs text-black/55 mb-6">Choose your deployment node structure to match your floor requirements.</p>
+                    
+                    <div className="space-y-3">
+                      {/* Starter Option */}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedPlan("starter")}
+                        className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer ${
+                          selectedPlan === "starter"
+                            ? "bg-white border-[#0052cc] shadow-sm"
+                            : "bg-transparent border-black/10 hover:border-black/25"
+                        }`}
+                      >
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-xs font-bold text-black uppercase tracking-wider">Starter Node</span>
+                          {selectedPlan === "starter" && <span className="w-2 h-2 rounded-full bg-[#0052cc]" />}
+                        </div>
+                        <span className="block text-[11px] text-black/55 leading-normal">
+                          Setup starts at $10. Pay-as-you-go whitelisted trunks. Perfect for small floors.
+                        </span>
+                      </button>
+
+                      {/* Enterprise Option */}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedPlan("enterprise")}
+                        className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer ${
+                          selectedPlan === "enterprise"
+                            ? "bg-white border-[#0052cc] shadow-sm"
+                            : "bg-transparent border-black/10 hover:border-black/25"
+                        }`}
+                      >
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-xs font-bold text-black uppercase tracking-wider">Enterprise Redundancy</span>
+                          {selectedPlan === "enterprise" && <span className="w-2 h-2 rounded-full bg-[#0052cc]" />}
+                        </div>
+                        <span className="block text-[11px] text-black/55 leading-normal">
+                          Fail-safe hot backup nodes with SLA guarantees. Engineered for large outbound floors.
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="hidden md:block pt-6 border-t border-black/5">
+                    <span className="text-[10px] text-black/40 font-bold uppercase tracking-wider font-mono">
+                      Astraventa Core Integration
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right Pane: Contact Form */}
+                <form onSubmit={onSubmit} className="col-span-3 p-8 space-y-4">
                   {/* Honeypot Spam Protection */}
                   <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} autoComplete="off" />
 
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider font-bold text-black/50 mb-1.5">Contact Person</label>
-                    <input type="text" name="name" placeholder="Alex Rivera" required className="w-full p-3 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition" />
+                  <h3 className="text-xl font-bold text-black tracking-tight leading-none mb-1 font-sans">
+                    Node Parameters
+                  </h3>
+                  <p className="text-xs text-black/55 mb-4">Provide details to register your whitelisted gateway endpoints.</p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Alex Rivera"
+                        required
+                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/85"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
+                        Work Email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="alex@company.com"
+                        required
+                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/85"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-xs uppercase tracking-wider font-bold text-black/50 mb-1.5">Work Email</label>
-                    <input type="email" name="email" placeholder="alex@company.com" required className="w-full p-3 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition" />
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
+                        Est. Call Volume
+                      </label>
+                      <select
+                        name="volume"
+                        required
+                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/80"
+                      >
+                        <option value="Under 100k mins/mo">Under 100k mins/mo</option>
+                        <option value="100k - 1M mins/mo">100k - 1M mins/mo</option>
+                        <option value="1M - 5M mins/mo">1M - 5M mins/mo</option>
+                        <option value="Over 5M mins/mo">Over 5M mins/mo</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
+                        Dialer Core / PBX
+                      </label>
+                      <select
+                        name="dialer"
+                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/80"
+                      >
+                        <option value="Not Sure / Softphone">Not Sure / Direct Softphone</option>
+                        <option value="VICIdial / GoAutodial">VICIdial / GoAutodial</option>
+                        <option value="Asterisk / FreePBX">Asterisk / FreePBX</option>
+                        <option value="3CX / Softphone">3CX / Softphone</option>
+                        <option value="Custom API / Other">Custom API / Other</option>
+                      </select>
+                    </div>
                   </div>
+
                   <div>
-                    <label className="block text-xs uppercase tracking-wider font-bold text-black/50 mb-1.5">Additional Notes</label>
-                    <textarea name="message" placeholder="Estimated call volume or specific gateway details..." className="w-full p-3 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition h-20 resize-none" />
+                    <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
+                      Special Requirements
+                    </label>
+                    <textarea
+                      name="message"
+                      placeholder="Specify customized Caller ID rotation parameters or standby target cores..."
+                      className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition h-14 resize-none text-xs font-medium text-black/85"
+                    />
                   </div>
-                  
+
                   {result && (
-                    <div className="text-xs font-bold text-[#0a1b3a] tracking-tight">{result}</div>
+                    <div className="text-xs font-bold text-[#0052cc] tracking-tight">{result}</div>
                   )}
 
-                  <div className="flex gap-3 pt-2">
-                    <button type="button" onClick={() => setIsDemoModalOpen(false)} className="flex-1 py-3 border border-black/10 rounded-xl font-bold text-sm hover:bg-black/5 transition cursor-pointer">
+                  <div className="flex justify-end gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsDemoModalOpen(false)}
+                      className="py-2.5 px-5 border border-black/10 rounded-xl font-bold text-xs hover:bg-black/5 transition cursor-pointer"
+                    >
                       Cancel
                     </button>
-                    <button type="submit" disabled={isSubmitting} className="flex-1 py-3 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-xl font-bold text-sm transition disabled:opacity-50 cursor-pointer">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="py-2.5 px-6 bg-[#0052cc] hover:bg-[#0047b3] text-white rounded-xl font-bold text-xs transition disabled:opacity-50 cursor-pointer shadow-sm"
+                    >
                       {isSubmitting ? "Submitting..." : "Submit & Connect"}
                     </button>
                   </div>
                 </form>
-              </>
+
+              </div>
             )}
           </div>
         </div>

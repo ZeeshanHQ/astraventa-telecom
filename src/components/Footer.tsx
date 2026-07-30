@@ -1,162 +1,151 @@
-import { Network, Cpu } from "lucide-react";
-
-function scrollTo(id: string) {
-  // If we're not on the home page, navigate home first then scroll
-  if (window.location.hash && window.location.hash !== "#/" && !window.location.hash.startsWith("#/#")) {
-    window.location.hash = "#/";
-    // Wait for the page to render, then scroll
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 300);
-  } else {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
-
 export default function Footer() {
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("open-request-modal"));
+  };
+
   return (
-    <footer className="w-full bg-[#f0f0f0]">
-      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-24 border-t border-black/15 flex flex-col md:flex-row justify-between gap-12">
+    <footer className="w-full bg-white">
+      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-24 border-t border-black/15 flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
         
         {/* Left Side: Logo + Description */}
-        <div className="flex flex-col max-w-sm gap-5">
-          <a href="#/" className="inline-block">
+        <div className="flex flex-col max-w-xs gap-4">
+          <a href="#/" className="flex items-center gap-2.5">
             <img
               src="/logo.png"
-              alt="Astraventa Telecom"
-              className="h-16 w-auto object-contain object-left select-none"
+              alt="Astraventa Logo"
+              className="h-10 w-auto object-contain select-none"
             />
+            <span className="text-lg font-semibold text-black tracking-tight font-sans">
+              Astraventa
+            </span>
           </a>
-          <p className="text-sm text-black/55 leading-relaxed font-medium">
-            Provisioning whitelisted routing nodes and dynamic Caller ID rotation to guarantee maximum voice campaign connection rates. A division of Astraventa Advanced Engineering.
+          <p className="text-xs sm:text-sm text-black/55 leading-relaxed font-medium">
+            Managed carrier-grade voice routing and whitelisted SIP trunks for high-density outbound dialers and sales floors. Backed by Astraventa Advanced Engineering.
           </p>
+          <div className="text-[11px] sm:text-xs text-black/45 font-bold font-mono space-y-0.5 mt-2">
+            <div>Support: +1 925 504 0101</div>
+            <div>WhatsApp: +92 305 525 5838</div>
+          </div>
         </div>
 
-        {/* Right Side Link Grid */}
-        <div className="grid grid-cols-3 gap-8 sm:gap-12 md:gap-16">
+        {/* Right Side Link Columns Grid - 3 columns of existing resources */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 lg:gap-16 flex-1 max-w-[700px]">
 
-          {/* Column 1: Network */}
+          {/* Column 1: Trunking */}
           <div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-black/40 block mb-4">
-              Network
+            <span className="text-xs font-bold text-black block mb-4 font-sans tracking-tight">
+              Trunking
             </span>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#/infrastructure"
-                  className="text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
                 >
                   Infrastructure
                 </a>
               </li>
               <li>
-                <button
-                  onClick={() => scrollTo("pricing")}
-                  className="text-sm text-black/50 hover:text-black transition-colors font-medium text-left"
+                <a
+                  href="#/docs"
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
                 >
-                  Trunk Slabs
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollTo("standards")}
-                  className="text-sm text-black/50 hover:text-black transition-colors font-medium text-left"
-                >
-                  Carrier Compliance
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Engineering */}
-          <div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-black/40 block mb-4">
-              Engineering
-            </span>
-            <ul className="space-y-3">
-              <li>
-                <button
-                  onClick={() => scrollTo("setup")}
-                  className="text-sm text-black/50 hover:text-black transition-colors font-medium text-left"
-                >
-                  Setup Flow
-                </button>
-              </li>
-              <li>
-                <a href="#/docs" className="text-sm text-black/50 hover:text-black transition-colors font-medium">
                   Documentation
                 </a>
               </li>
               <li>
-                <button
-                  onClick={() => scrollTo("standards")}
-                  className="text-sm text-black/50 hover:text-black transition-colors font-medium text-left"
+                <a
+                  href="#setup"
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
                 >
-                  Trunk Health
-                </button>
+                  Setup Portal
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Support Desk */}
+          {/* Column 2: Direct Support */}
           <div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-black/40 block mb-4">
-              Support Desk
+            <span className="text-xs font-bold text-black block mb-4 font-sans tracking-tight">
+              Direct Support
             </span>
             <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  onClick={handleContactClick}
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
+                >
+                  Contact Integration Desk
+                </a>
+              </li>
               <li>
                 <a
                   href="https://wa.me/923055255838"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-black/50 hover:text-black transition-colors font-medium"
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
                 >
-                  WhatsApp Direct
-                </a>
-              </li>
-              <li>
-                <a href="mailto:zeeshan@astraventa.com" className="text-sm text-black/50 hover:text-black transition-colors font-medium">
-                  Email Desk
-                </a>
-              </li>
-              <li>
-                <a href="tel:+19255040101" className="text-sm text-black/50 hover:text-black transition-colors font-medium">
-                  +1 925 504 0101
+                  WhatsApp Live Support
                 </a>
               </li>
             </ul>
           </div>
-        </div>
 
+          {/* Column 3: Privacy & Legal */}
+          <div>
+            <span className="text-xs font-bold text-black block mb-4 font-sans tracking-tight">
+              Privacy & Legal
+            </span>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#/privacy"
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#/terms"
+                  className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
+                >
+                  Terms of Service
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </div>
 
       {/* Bottom Copyright bar */}
-      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-6 border-t border-black/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-black/40 font-bold">
-        <span>&copy; 2026 Astraventa. All rights reserved.</span>
-        <div className="flex gap-6 items-center flex-wrap">
-          <a href="#/privacy" className="hover:text-black transition-colors">Privacy Policy</a>
-          <a href="#/terms" className="hover:text-black transition-colors">Terms of Service</a>
-          <div className="w-px h-3 bg-black/10 hidden sm:block" />
+      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-6 border-t border-black/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs text-black/40 font-bold">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span>&copy; 2026 Astraventa (astraventa.com). All rights reserved.</span>
+          <span>&bull;</span>
           <a
             href="/sitemap.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black transition-colors flex items-center gap-1.5 text-black/55 text-[10px] uppercase tracking-wider"
+            className="hover:text-black transition-colors"
           >
-            <Network className="w-3.5 h-3.5 text-black/40" />
-            <span>Sitemap</span>
+            Sitemap
           </a>
+          <span>&bull;</span>
           <a
             href="/llms.txt"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black transition-colors flex items-center gap-1.5 text-black/55 text-[10px] uppercase tracking-wider"
+            className="hover:text-black transition-colors"
           >
-            <Cpu className="w-3.5 h-3.5 text-black/40" />
-            <span>AI Index</span>
+            LLMs.txt
           </a>
+        </div>
+        <div className="text-right uppercase tracking-wider text-[9px] sm:text-[10px]">
+          ASTRAVENTA TELECOM NETWORK &bull; VOICE CARRIER HUB
         </div>
       </div>
     </footer>

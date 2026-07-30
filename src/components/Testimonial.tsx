@@ -2,7 +2,7 @@ import { Quote } from "lucide-react";
 
 export default function Testimonial() {
   return (
-    <section className="w-full bg-[#f0f0f0] py-12 md:py-16 px-4 md:px-8 border-t border-black/5">
+    <section className="w-full bg-white py-12 md:py-16 px-4 md:px-8 border-t border-black/5">
       <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12">
         <div className="max-w-[950px] mx-auto text-center flex flex-col items-center">
           
@@ -35,7 +35,7 @@ export default function Testimonial() {
           {/* Author Metadata */}
           <div className="flex flex-col items-center">
             <span className="text-sm font-extrabold text-black/85">
-              Sarah Jenkins
+              Muhammad Tayyab
             </span>
             <span className="text-xs font-semibold text-black/45 mt-0.5">
               Founder & CEO of imopshub

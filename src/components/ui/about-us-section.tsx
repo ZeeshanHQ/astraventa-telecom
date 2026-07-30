@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   PhoneCall,
   ShieldCheck,
@@ -6,18 +6,12 @@ import {
   RefreshCw,
   DollarSign,
   Activity,
-  Users,
-  Clock,
-  Zap,
-  TrendingUp,
   ArrowRight,
 } from "lucide-react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function AboutUsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 });
 
   // Parallax effect for decorative elements
   const { scrollYProgress } = useScroll({
@@ -95,18 +89,11 @@ export default function AboutUsSection() {
     },
   ];
 
-  const stats = [
-    { icon: <Zap className="w-5 h-5" />, value: 5.2, label: "Daily Routed Minutes", suffix: "M" },
-    { icon: <Users className="w-5 h-5" />, value: 1200, label: "Active Floors", suffix: "+" },
-    { icon: <Clock className="w-5 h-5" />, value: 99.9, label: "Trunk Uptime Guarantee", suffix: "%" },
-    { icon: <TrendingUp className="w-5 h-5" />, value: 100, label: "Attestation Compliance", suffix: "%" },
-  ];
-
   return (
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-8 px-4 bg-[#f0f0f0] text-[#0a1b3a] overflow-hidden relative border-t border-black/5"
+      className="w-full py-8 px-4 bg-[#f9fafb] text-[#0a1b3a] overflow-hidden relative border-t border-black/5"
     >
       {/* Decorative background elements */}
       <motion.div
@@ -127,12 +114,6 @@ export default function AboutUsSection() {
       >
         <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
           <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-center tracking-tight">Core Infrastructure</h2>
-          <motion.div
-            className="w-24 h-1 bg-cyan-600 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: 96 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          ></motion.div>
         </motion.div>
 
         <motion.p className="text-center max-w-2xl mx-auto mb-20 text-[#0a1b3a]/70 font-medium text-sm leading-relaxed" variants={itemVariants}>
@@ -197,42 +178,24 @@ export default function AboutUsSection() {
           </div>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          ref={statsRef}
-          className="mt-28 grid grid-cols-2 lg:grid-cols-4 gap-4"
-          initial="hidden"
-          animate={isStatsInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          {stats.map((stat, index) => (
-            <StatCounter
-              key={index}
-              icon={stat.icon}
-              value={stat.value}
-              label={stat.label}
-              suffix={stat.suffix}
-              delay={index * 0.1}
-            />
-          ))}
-        </motion.div>
-
         {/* CTA Section */}
         <motion.div
-          className="mt-20 bg-[#0a1b3a] text-white p-8 md:p-12 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
+          className="mt-14 w-full rounded-3xl bg-gradient-to-r from-red-50/70 via-slate-50/70 to-cyan-50/70 border border-black/5 py-7 px-8 md:py-8 md:px-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-sm"
           initial={{ opacity: 0, y: 30 }}
-          animate={isStatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="flex-1">
-            <h3 className="text-2xl md:text-3xl font-black mb-2 tracking-tight">Ready to integrate dynamic voice trunks?</h3>
-            <p className="text-white/70 font-medium">We config everything within 5 minutes. Initial setup is $10.</p>
+          <div className="flex-1 flex flex-col gap-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-black tracking-tight leading-none">Ready to integrate dynamic voice trunks?</h3>
+            <p className="text-xs sm:text-sm text-black/60 leading-relaxed font-medium">We config everything within 5 minutes. Initial setup is $10.</p>
           </div>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-            className="bg-white hover:bg-white/90 text-[#0a1b3a] px-8 py-4 rounded-xl flex items-center gap-2 font-bold text-sm transition-colors cursor-pointer"
+            className="bg-[#0052cc] hover:bg-[#0047b3] text-white px-8 py-3.5 rounded-full flex items-center gap-2 font-bold text-sm transition-all shadow-md active:scale-95 cursor-pointer whitespace-nowrap self-stretch md:self-auto text-center"
           >
-            Managed Onboarding <ArrowRight className="w-4 h-4" />
+            <span>Managed Onboarding</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>
       </motion.div>
@@ -271,60 +234,3 @@ function ServiceItem({ icon, title, description, variants, delay }: ServiceItemP
   );
 }
 
-interface StatCounterProps {
-  icon: React.ReactNode;
-  value: number;
-  label: string;
-  suffix: string;
-  delay: number;
-}
-
-function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
-  const countRef = useRef(null);
-  const isInView = useInView(countRef, { once: true });
-  const [displayValue, setDisplayValue] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const end = value;
-      if (start === end) return;
-
-      const increment = end > 30 ? Math.ceil(end / 40) : end / 40;
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          clearInterval(timer);
-          setDisplayValue(end);
-        } else {
-          setDisplayValue(Number(start.toFixed(1)));
-        }
-      }, 30);
-
-      return () => clearInterval(timer);
-    }
-  }, [isInView, value]);
-
-  return (
-    <motion.div
-      className="bg-white/50 backdrop-blur-sm p-6 rounded-2xl flex flex-col items-center text-center group hover:bg-white transition-colors duration-300 border border-black/5"
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, delay },
-        },
-      }}
-    >
-      <div className="w-12 h-12 rounded-full bg-[#0a1b3a]/5 flex items-center justify-center mb-4 text-cyan-600 group-hover:bg-cyan-50 transition-colors duration-300 border border-black/5">
-        {icon}
-      </div>
-      <div ref={countRef} className="text-2xl md:text-3xl font-black text-[#0a1b3a] flex items-center tracking-tight">
-        <span>{displayValue}</span>
-        <span>{suffix}</span>
-      </div>
-      <p className="text-black/50 text-[10px] uppercase font-bold tracking-wider mt-1 font-mono">{label}</p>
-    </motion.div>
-  );
-}

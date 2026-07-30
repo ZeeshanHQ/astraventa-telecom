@@ -6,7 +6,6 @@ import AboutUsSection from "./components/ui/about-us-section";
 import Features from "./components/Features";
 import Standards from "./components/Standards";
 import Pricing from "./components/Pricing";
-import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -14,6 +13,8 @@ import Documentation from "./pages/Documentation";
 import Infrastructure from "./pages/Infrastructure";
 import ChatWidget from "./components/ChatWidget";
 import Testimonial from "./components/Testimonial";
+import FAQ from "./components/FAQ";
+import JoinNewsletter from "./components/JoinNewsletter";
 
 function App() {
   const [route, setRoute] = useState(window.location.hash || "#/");
@@ -48,13 +49,14 @@ function App() {
     <main className="min-h-screen bg-[#f0f0f0]">
       <Hero />
       <Metrics />
-      <Testimonial />
       <Setup />
       <AboutUsSection />
       <Features />
       <Standards />
       <Pricing />
-      <CTA />
+      <Testimonial />
+      <FAQ />
+      <JoinNewsletter />
       <Footer />
       <ChatWidget />
     </main>

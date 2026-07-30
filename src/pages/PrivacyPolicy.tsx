@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="w-full min-h-screen bg-[#f0f0f0] px-4 md:px-8 py-12 md:py-20">
+    <div className="w-full min-h-screen bg-white px-4 md:px-8 py-12 md:py-20">
       <div className="max-w-[860px] mx-auto">
 
         {/* Back link */}
@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
         {/* Header */}
         <div className="mb-14">
           <span className="text-xs uppercase tracking-widest font-bold text-black/35 font-mono block mb-3">Legal Documentation</span>
-          <h1 className="text-4xl md:text-6xl font-black text-black tracking-tight leading-none mb-4">Privacy Policy</h1>
+          <h1 className="text-4xl md:text-6xl font-semibold text-black tracking-tight leading-none mb-4">Privacy Policy</h1>
           <p className="text-sm text-black/50 font-medium">Last updated: July 2, 2026 &nbsp;·&nbsp; Effective immediately</p>
         </div>
 
@@ -30,12 +30,12 @@ export default function PrivacyPolicy() {
         <div className="space-y-14 text-sm text-black/70 leading-relaxed font-medium">
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">1. About Astraventa</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">1. About Astraventa</h2>
             <p>Astraventa Telecom is a division of Astraventa Advanced Engineering, a technology and telecommunications infrastructure company. We provide managed carrier-grade voice routing, whitelisted SIP trunk provisioning, Caller ID rotation services, and associated network infrastructure. This Privacy Policy applies to all services operated under the Astraventa Telecom brand.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">2. Information We Collect</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">2. Information We Collect</h2>
             <p className="mb-3">We collect minimal, purposeful data to operate and improve our services. This includes:</p>
             <ul className="space-y-2 pl-4">
               <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span><strong className="text-black font-bold">Contact Information:</strong> Name, business email, and phone number provided when requesting test trunks or accessing services.</span></li>
@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">3. How We Use Your Information</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">3. How We Use Your Information</h2>
             <p className="mb-3">Data collected is used exclusively for:</p>
             <ul className="space-y-2 pl-4">
               <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Provisioning and managing your allocated telecom trunk resources.</span></li>
@@ -58,32 +58,32 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">4. Data Retention</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">4. Data Retention</h2>
             <p>Call detail records and billing data are retained for a minimum of 24 months in compliance with US telecommunications regulations. Contact information is retained for the duration of the business relationship and deleted within 30 days of a written deletion request.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">5. Third-Party Sharing</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">5. Third-Party Sharing</h2>
             <p>We do not sell, trade, or rent your personal information. We may share technical metadata with upstream carrier partners (including Telnyx and interconnected Tier-1 carriers) solely as required to route calls and maintain STIR/SHAKEN attestation. All third parties are contractually bound to equivalent data protection standards.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">6. Security</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">6. Security</h2>
             <p>All data is encrypted in transit using TLS 1.3. SIP credentials are stored with AES-256 encryption. Access to call records is restricted to authorized Astraventa engineering personnel on a need-to-know basis. We conduct regular internal security audits on all infrastructure nodes.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">7. Your Rights</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">7. Your Rights</h2>
             <p>You have the right to request access to, correction of, or deletion of personal data we hold about you. To exercise any of these rights, contact our data desk at <a href="mailto:zeeshan@astraventa.com" className="text-black font-bold hover:underline">zeeshan@astraventa.com</a>. We will respond within 30 business days.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">8. Changes to This Policy</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">8. Changes to This Policy</h2>
             <p>We may update this Privacy Policy as our services evolve. Material changes will be communicated via email to all active account holders. Continued use of our services after notification constitutes acceptance of the updated terms.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-black tracking-tight mb-4">9. Contact</h2>
+            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">9. Contact</h2>
             <p>For any privacy-related inquiries, write to our data protection desk:</p>
             <div className="mt-4 bg-white rounded-2xl p-6 border border-black/5 space-y-2">
               <p className="font-bold text-black">Astraventa Advanced Engineering</p>

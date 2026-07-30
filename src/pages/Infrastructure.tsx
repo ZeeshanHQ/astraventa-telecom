@@ -2,7 +2,7 @@ import { ArrowLeft, Cpu, Network, Zap } from "lucide-react";
 
 export default function Infrastructure() {
   return (
-    <div className="w-full min-h-screen bg-[#f0f0f0] px-4 md:px-8 py-12 md:py-20">
+    <div className="w-full min-h-screen bg-white px-4 md:px-8 py-12 md:py-20">
       <div className="max-w-[960px] mx-auto">
 
         {/* Back link */}
@@ -19,7 +19,7 @@ export default function Infrastructure() {
         {/* Header */}
         <div className="mb-14">
           <span className="text-xs uppercase tracking-widest font-bold text-black/35 font-mono block mb-3">System Architecture</span>
-          <h1 className="text-4xl md:text-6xl font-black text-black tracking-tight leading-none mb-4">Telecom Infrastructure</h1>
+          <h1 className="text-4xl md:text-6xl font-semibold text-black tracking-tight leading-none mb-4">Telecom Infrastructure</h1>
           <p className="text-sm text-black/50 font-medium">Under the hood of Astraventa's whitelisted Tier-1 voice routing hubs</p>
         </div>
 
@@ -33,7 +33,7 @@ export default function Infrastructure() {
           <section className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-black/5">
             <div className="flex items-center gap-3 mb-6">
               <Network className="w-6 h-6 text-cyan-600" />
-              <h2 className="text-xl font-black text-black tracking-tight">1. Tier-1 Direct Interconnects</h2>
+              <h2 className="text-xl font-semibold text-black tracking-tight">1. Tier-1 Direct Interconnects</h2>
             </div>
             <p className="mb-4">
               We eliminate cheap retail VoIP trunks. Your outbound traffic connects directly to whitelisted Tier-1 telecom backhauls (including Telnyx, Bandwidth, and Peerless routing pools).
@@ -47,7 +47,7 @@ export default function Infrastructure() {
           <section className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-black/5">
             <div className="flex items-center gap-3 mb-6">
               <Cpu className="w-6 h-6 text-cyan-600" />
-              <h2 className="text-xl font-black text-black tracking-tight">2. Algorithmic DID Rotation</h2>
+              <h2 className="text-xl font-semibold text-black tracking-tight">2. Algorithmic DID Rotation</h2>
             </div>
             <p className="mb-4">
               Outbound campaigns run dynamic caller identification algorithms. Caller IDs are rotated systematically across localized areas code matching your call lists.
@@ -61,7 +61,7 @@ export default function Infrastructure() {
           <section className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-black/5">
             <div className="flex items-center gap-3 mb-6">
               <Zap className="w-6 h-6 text-cyan-600" />
-              <h2 className="text-xl font-black text-black tracking-tight">3. Fail-Safe Node Heartbeats</h2>
+              <h2 className="text-xl font-semibold text-black tracking-tight">3. Fail-Safe Node Heartbeats</h2>
             </div>
             <p className="mb-4">
               Our technical monitoring layer tracks trunk latency and call setup failures in real-time. If an upstream carrier gateway experiences latency greater than 80ms, traffic is dynamically switched to hot-standby trunks.
