@@ -63,15 +63,16 @@ export default function Metrics() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-0 overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 overflow-hidden"
         >
           {metrics.map((m, i) => {
             const borderClasses = `
               p-6 md:p-10 flex flex-col justify-between min-h-[160px] md:min-h-[220px] transition-colors duration-300 hover:bg-[rgba(30,50,90,0.015)]
-              ${i % 2 === 0 ? "border-r" : ""} 
-              ${i < 2 ? "border-b" : ""} 
+              ${i !== 3 ? "border-b" : ""} 
+              ${i < 2 ? "sm:border-b" : "sm:border-b-0"} 
+              ${i % 2 === 0 ? "sm:border-r" : "sm:border-r-0"} 
               lg:border-b-0 
-              ${i !== 3 ? "lg:border-r" : ""} 
+              ${i !== 3 ? "lg:border-r" : "lg:border-r-0"} 
               border-[rgba(30,50,90,0.1)]
             `;
 
