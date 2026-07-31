@@ -11,6 +11,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Documentation from "./pages/Documentation";
 import Infrastructure from "./pages/Infrastructure";
+import AiReceptionist from "./pages/AiReceptionist";
 import ChatWidget from "./components/ChatWidget";
 import Testimonial from "./components/Testimonial";
 import FAQ from "./components/FAQ";
@@ -43,6 +44,10 @@ function App() {
 
   if (route === "#/infrastructure" || route === "#/infra") {
     return <Infrastructure />;
+  }
+
+  if (route === "#/ai-receptionist") {
+    return <AiReceptionist />;
   }
 
   return (

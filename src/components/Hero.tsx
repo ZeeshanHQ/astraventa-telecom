@@ -126,11 +126,20 @@ export default function Hero() {
         {/* Video Overlay Tint — slightly deeper for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50 z-0 pointer-events-none" />
 
+        {/* Announcement Top Banner */}
+        <a 
+          href="#/ai-receptionist" 
+          className="w-full bg-[#030712]/95 backdrop-blur-md text-white/90 py-2.5 px-4 text-center text-[10px] md:text-xs font-semibold tracking-wide hover:text-white transition-all flex items-center justify-center gap-1.5 z-40 relative select-none cursor-pointer text-decoration-none shadow-sm border-b border-white/5"
+        >
+          <span>🚀 Introducing Astraventa Inbound AI Receptionists: Qualify leads & warm-forward calls 24/7.</span>
+          <span className="underline hover:no-underline flex items-center gap-0.5">Learn more <ArrowUpRight className="w-3 h-3" /></span>
+        </a>
+
         {/* Navbar */}
         <nav className="w-full flex items-center justify-between py-6 px-6 md:px-12 z-30 relative">
           {/* Brand Logo (Visible on mobile & desktop) */}
           <a href="#/" className="flex items-center select-none">
-            <img src="/logo.png" alt="Astraventa Telecom" className="h-11 md:h-14 w-auto object-contain drop-shadow-sm" />
+            <img src="/astraventa-white.png" alt="Astraventa Telecom" className="h-7.5 md:h-9 w-auto object-contain drop-shadow-sm" />
           </a>
 
           {/* Desktop Centered Links (Logo is hidden on desktop) */}

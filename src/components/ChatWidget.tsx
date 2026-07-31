@@ -13,6 +13,16 @@ export default function ChatWidget() {
   const [isTyping, setIsTyping] = useState(false);
   const [capturedName, setCapturedName] = useState("");
   const [capturedEmail, setCapturedEmail] = useState("");
+  const [showTooltip, setShowTooltip] = useState(true);
+  const [route, setRoute] = useState(window.location.hash || "#/");
+
+  useEffect(() => {
+    const handleHash = () => {
+      setRoute(window.location.hash || "#/");
+    };
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
 
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -24,17 +34,16 @@ export default function ChatWidget() {
   const [chatHistory, setChatHistory] = useState<{ role: "system" | "user" | "assistant"; content: string }[]>([
     {
       role: "system",
-      content: `You are the Astraventa Support Bot, an elite AI integration assistant for Astraventa Telecom.
+      content: `You are the Astraventa Support Bot, an elite AI integration assistant for Astraventa.
 Our service details:
-- We provide whitelisted SIP trunks that connect directly to Tier-1 carrier networks (Telnyx, Bandwidth, and Peerless routing pools).
-- Features include dynamic Caller ID rotation to bypass 'Spam Likely' carrier labeling, and Level A attestation (STIR/SHAKEN).
-- Starter Node: $10 setup fee with pay-as-you-go billing ($5 credit covers ~250 minutes of calling).
-- Enterprise Redundancy: SLA-backed, fail-safe redundant standby gateways with SLA guarantees.
-- Custom dialer integrations (VICIdial, Asterisk, 3CX, FreePBX, etc.) are fully supported.
+- Whitelisted SIP trunks connect directly to Tier-1 carrier networks (Telnyx, Bandwidth, Peerless).
+- Carrier Dialers setup: $10 setup fee with pay-as-you-go billing ($5 credit covers ~250 minutes of call-time).
+- Inbound AI Receptionists: Screen calls, handle objections, and warm-forward to cell. Pricing is custom based on script requirements. Do NOT quote the $10 setup for AI receptionists.
+- For all setup and integration configurations, encourage booking a 15-minute technical walkthrough meeting on Calendly (https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa).
 Guidelines:
-1. Maintain a professional, elite, trustworthy, and welcoming tone. Avoid sharing deep carrier backend configurations or secrets; focus on high performance, reliability, and whitelisting.
-2. In your replies, if the user hasn't provided name and email, politely prompt for it.
-3. Keep replies concise and readable (suitable for a small chat box). Do not use markdown headers or lists; use plain paragraphs.`
+1. Tone: Professional, welcoming, and elite. Do not share deep carrier backend configuration secrets.
+2. In your replies, if the user hasn't provided name/email, prompt for it.
+3. Keep responses extremely short, complete, and beautiful (strictly under 2 sentences max). Never leave sentences half-finished or truncated.`
     },
     {
       role: "assistant",
@@ -97,7 +106,7 @@ Guidelines:
           model: "openrouter/free",
           messages: updatedHistory,
           temperature: 0.7,
-          max_tokens: 150
+          max_tokens: 350
         })
       });
 
@@ -117,12 +126,12 @@ Guidelines:
       if (foundEmail || capturedEmail || botReply.toLowerCase().includes("email")) {
         finalLinks = [
           { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923055255838?text=${encodeURIComponent(`Hi Zeeshan, I am chatting on Astraventa Telecom.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
-          { label: "Deploy Whitelisted Node", href: "#" }
+          { label: "Book a Meeting", href: "https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" }
         ];
       } else {
         finalLinks = [
           { label: "Direct Support WhatsApp", href: "https://wa.me/923055255838" },
-          { label: "Deploy Whitelisted Node", href: "#" }
+          { label: "Book a Meeting", href: "https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" }
         ];
       }
 
@@ -160,9 +169,32 @@ Guidelines:
 
   return (
     <>
+      {/* Welcome Tooltip */}
+      {!isOpen && showTooltip && (
+        <div className="fixed bottom-[26px] right-24 z-50 bg-white border border-black/10 rounded-2xl px-4 py-3 shadow-lg flex items-center gap-3 animate-in fade-in slide-in-from-right-4 duration-300 max-w-[280px]">
+          <div className="text-[11px] text-black/75 font-sans font-semibold leading-snug">
+            {route === "#/ai-receptionist" 
+              ? "🚀 Missed calls are lost clients. Our Inbound AI Receptionist answers instantly, handles objections, and routes leads. Chat with us!"
+              : "🚀 Need whitelisted SIP trunks or high-volume AI Dialers? Get whitelisted in 5 minutes. Chat with us!"}
+          </div>
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowTooltip(false);
+            }}
+            className="text-black/35 hover:text-black hover:bg-black/5 p-1 rounded-md transition-colors cursor-pointer"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* Floating Action Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setShowTooltip(false);
+        }}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-[0_8px_30px_rgba(10,27,58,0.3)] transition-all duration-300 hover:scale-105 active:scale-95 border border-white/10 cursor-pointer"
       >
         {isOpen ? (
