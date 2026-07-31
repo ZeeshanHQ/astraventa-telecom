@@ -300,7 +300,7 @@ export default function Hero() {
                     rel="noopener noreferrer"
                     className="w-full py-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition duration-200 shadow-lg text-decoration-none cursor-pointer"
                   >
-                    <span>Also Send on WhatsApp</span>
+                    <span>Start Direct WhatsApp Verification</span>
                   </a>
                   <button
                     onClick={() => {

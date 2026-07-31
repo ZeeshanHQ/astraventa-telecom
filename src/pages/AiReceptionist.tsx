@@ -7,7 +7,7 @@ export default function AiReceptionist() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [volume, setVolume] = useState("10k - 100k mins/mo");
+  const [volume, setVolume] = useState("< 500 mins/mo");
   const dialer = "Inbound AI Receptionist";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -244,9 +244,9 @@ export default function AiReceptionist() {
                     href="https://wa.me/923267853405" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3 rounded-full font-sans font-medium text-sm transition shadow-sm text-decoration-none cursor-pointer"
+                    className="bg-[#25D366] hover:bg-[#20ba59] text-white px-8 py-3.5 rounded-full font-sans font-medium text-sm transition shadow-sm text-decoration-none cursor-pointer"
                   >
-                    Direct WhatsApp
+                    Connect WhatsApp Integration Desk
                   </a>
                 </div>
               </div>
@@ -296,9 +296,11 @@ export default function AiReceptionist() {
                         onChange={(e) => setVolume(e.target.value)}
                         className="w-full px-4 py-3 bg-white border border-black/15 rounded-xl text-sm outline-none focus:border-[#0052cc] transition-colors font-medium text-black/85 cursor-pointer"
                       >
-                        <option value="10k - 100k mins/mo">10k - 100k mins/mo</option>
-                        <option value="100k - 1M mins/mo">100k - 1M mins/mo</option>
-                        <option value="1M+ mins/mo">1M+ mins/mo</option>
+                        <option value="< 500 mins/mo">&lt; 500 mins/mo</option>
+                        <option value="500 - 5k mins/mo">500 - 5k mins/mo</option>
+                        <option value="5k - 20k mins/mo">5k - 20k mins/mo</option>
+                        <option value="20k - 100k mins/mo">20k - 100k mins/mo</option>
+                        <option value="100k+ mins/mo">100k+ mins/mo</option>
                       </select>
                     </div>
                     <div className="space-y-1.5">
