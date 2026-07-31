@@ -131,9 +131,8 @@ export default function AiReceptionist() {
         {/* Floating Google Voice style navigation pill-tabs bar */}
         <section className="py-2 border-t border-black/5 relative">
           
-          {/* Sticky Tab bar wrapper sitting under sticky navbar - Borderless/Lineless */}
-          <div className="w-full sticky top-[76px] z-40 bg-white/95 backdrop-blur-md py-4 flex justify-center items-center mb-12 sm:mb-16">
-            <div className="flex bg-slate-100/80 p-1 rounded-full max-w-full overflow-x-auto whitespace-nowrap scrollbar-none">
+          <div className="w-full sticky top-[76px] z-40 bg-transparent py-4 flex justify-center items-center mb-12 sm:mb-16 pointer-events-none">
+            <div className="flex bg-slate-100/90 backdrop-blur-md p-1 rounded-full max-w-full overflow-x-auto whitespace-nowrap scrollbar-none pointer-events-auto shadow-sm">
               <button 
                 onClick={() => document.getElementById("objections")?.scrollIntoView({ behavior: "smooth", block: "center" })}
                 className="px-4 sm:px-6 py-2 rounded-full text-xs font-heading font-medium text-black/55 hover:text-black transition-all cursor-pointer hover:bg-white active:scale-95"
