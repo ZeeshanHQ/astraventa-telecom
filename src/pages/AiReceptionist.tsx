@@ -102,16 +102,14 @@ export default function AiReceptionist() {
               >
                 Get started
               </a>
-              <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  // @ts-ignore
-                  window.Calendly?.initPopupWidget({ url: 'https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa' });
-                }}
-                className="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-black/85 px-5 sm:px-6 py-3.5 rounded-full border border-black/10 font-sans font-medium text-sm transition active:scale-95 cursor-pointer"
+              <a 
+                href="https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-black/85 px-5 sm:px-6 py-3.5 rounded-full border border-black/10 font-sans font-medium text-sm transition active:scale-95 text-decoration-none cursor-pointer"
               >
                 Contact sales
-              </button>
+              </a>
             </div>
           </div>
           
