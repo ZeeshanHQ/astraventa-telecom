@@ -33,7 +33,8 @@ export default function AiReceptionist() {
           plan_type: "starter",
           call_volume: volume,
           dialer_software: dialer,
-          message: message || "Requested Inbound AI Receptionist Demo"
+          message: message || "Requested Inbound AI Receptionist Demo",
+          source: "ai-receptionist"
         })
       });
 
@@ -241,7 +242,7 @@ export default function AiReceptionist() {
                 </p>
                 <div className="pt-4">
                   <a 
-                    href="https://wa.me/923055255838" 
+                    href="https://wa.me/923267853405" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3 rounded-full font-sans font-medium text-sm transition shadow-sm text-decoration-none cursor-pointer"

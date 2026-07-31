@@ -41,12 +41,12 @@ export default function Footer() {
                 className="w-5 h-5 rounded-full object-cover border border-black/5 select-none"
               />
               <a 
-                href="https://wa.me/923055255838" 
+                href="https://wa.me/923267853405" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="font-mono hover:text-emerald-600 transition-colors font-bold text-black/80 text-xs"
               >
-                +92 305 525 5838
+                +92 326 7853405
               </a>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/923055255838"
+                  href="https://wa.me/923267853405"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs sm:text-sm text-black/50 hover:text-black transition-colors font-medium cursor-pointer"
