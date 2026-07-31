@@ -164,6 +164,11 @@ Guidelines:
       e.preventDefault();
       window.dispatchEvent(new CustomEvent("open-request-modal"));
       setIsOpen(false);
+    } else if (href.includes("calendly.com")) {
+      e.preventDefault();
+      // @ts-ignore
+      window.Calendly?.initPopupWidget({ url: href });
+      setIsOpen(false);
     }
   };
 
