@@ -43,7 +43,8 @@ Our service details:
 Guidelines:
 1. Tone: Professional, welcoming, and elite. Do not share deep carrier backend configuration secrets.
 2. In your replies, if the user hasn't provided name/email, prompt for it.
-3. Keep responses extremely short, complete, and beautiful (strictly under 2 sentences max). Never leave sentences half-finished or truncated.`
+3. Keep responses extremely short, complete, and beautiful (strictly under 2 sentences max).
+4. CRITICAL: ONLY output the final direct message to the user. Do NOT write your thoughts, logic, planning, instructions, or internal reasoning.`
     },
     {
       role: "assistant",
@@ -103,7 +104,7 @@ Guidelines:
           "X-Title": "Astraventa Chat"
         },
         body: JSON.stringify({
-          model: "openrouter/free",
+          model: "google/gemini-2.5-flash:free",
           messages: updatedHistory,
           temperature: 0.7,
           max_tokens: 350
