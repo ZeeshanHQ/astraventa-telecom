@@ -89,7 +89,7 @@ export default function PrivacyPolicy() {
               <p className="font-bold text-black">Astraventa Advanced Engineering</p>
               <a href="mailto:zeeshan@astraventa.com" className="text-black/60 hover:text-black transition-colors block">zeeshan@astraventa.com</a>
               <a href="tel:+19255040101" className="text-black/60 hover:text-black transition-colors block">+1 925 504 0101</a>
-              <a href="https://wa.me/923055255838" target="_blank" rel="noopener noreferrer" className="text-black/60 hover:text-black transition-colors block">WhatsApp: +92 305 525 5838</a>
+              <a href="https://wa.me/923267853405" target="_blank" rel="noopener noreferrer" className="text-black/60 hover:text-black transition-colors block">WhatsApp: +92 326 7853405</a>
             </div>
           </section>
 

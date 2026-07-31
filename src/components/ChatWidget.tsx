@@ -125,12 +125,12 @@ Guidelines:
       let finalLinks: { label: string; href: string }[] = [];
       if (foundEmail || capturedEmail || botReply.toLowerCase().includes("email")) {
         finalLinks = [
-          { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923055255838?text=${encodeURIComponent(`Hi Zeeshan, I am chatting on Astraventa Telecom.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
+          { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923267853405?text=${encodeURIComponent(`Hi Zeeshan, I am chatting on Astraventa Telecom.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
           { label: "Book a Meeting", href: "https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" }
         ];
       } else {
         finalLinks = [
-          { label: "Direct Support WhatsApp", href: "https://wa.me/923055255838" },
+          { label: "Direct Support WhatsApp", href: "https://wa.me/923267853405" },
           { label: "Book a Meeting", href: "https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" }
         ];
       }
@@ -150,7 +150,7 @@ Guidelines:
           sender: "bot",
           text: `Interconnect Error: ${error?.message || "Connection timeout"}. Let's route your integration request directly over WhatsApp to our founder, Zeeshan.`,
           links: [
-            { label: "Connect Zeeshan on WhatsApp", href: "https://wa.me/923055255838" }
+            { label: "Connect Zeeshan on WhatsApp", href: "https://wa.me/923267853405" }
           ]
         }
       ]);
@@ -228,7 +228,7 @@ Guidelines:
             </div>
             <div className="flex items-center gap-2">
               <a
-                href={`https://wa.me/923055255838?text=${encodeURIComponent(`Hi Zeeshan, transfer me from Webchat.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || 'Pending'}`)}`}
+                href={`https://wa.me/923267853405?text=${encodeURIComponent(`Hi Zeeshan, transfer me from Webchat.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || 'Pending'}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Transfer to WhatsApp Desk"
