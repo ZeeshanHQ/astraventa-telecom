@@ -23,9 +23,30 @@ export default function Footer() {
           <p className="text-xs sm:text-sm text-black/55 leading-relaxed font-medium">
             Managed carrier-grade voice routing and whitelisted SIP trunks for high-density outbound dialers and sales floors. Backed by Astraventa Advanced Engineering.
           </p>
-          <div className="text-[11px] sm:text-xs text-black/45 font-bold font-mono space-y-0.5 mt-2">
-            <div>Support: +1 925 504 0101</div>
-            <div>WhatsApp: +92 305 525 5838</div>
+          <div className="text-xs text-black/65 space-y-2 mt-4 font-sans font-medium">
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5 px-2.5 py-0.5 bg-slate-50 border border-black/5 rounded-full text-[10px] font-bold text-black/70 font-mono select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500" />
+                USA
+              </span>
+              <a href="tel:+19255040101" className="font-mono hover:text-[#0052cc] transition-colors font-bold text-black/80">
+                +1 925 504 0101
+              </a>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1.5 px-2.5 py-0.5 bg-slate-50 border border-black/5 rounded-full text-[10px] font-bold text-black/70 font-mono select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                PK
+              </span>
+              <a 
+                href="https://wa.me/923055255838" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="font-mono hover:text-emerald-600 transition-colors font-bold text-black/80 flex items-center gap-1"
+              >
+                +92 305 525 5838
+              </a>
+            </div>
           </div>
         </div>
 
