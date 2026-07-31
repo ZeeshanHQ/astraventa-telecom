@@ -17,7 +17,7 @@ export default function Testimonial() {
                 e.currentTarget.style.display = "none";
               }}
             />
-            <span className="text-sm font-black tracking-widest text-[#0a1b3a] font-mono uppercase">
+            <span className="text-sm font-bold tracking-widest text-[#0a1b3a] font-mono uppercase">
               IMOPSHUB
             </span>
           </div>

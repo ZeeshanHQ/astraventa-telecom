@@ -107,8 +107,8 @@ export default function Standards() {
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-black text-emerald-600 tracking-widest font-mono">RIVR Carrier Standard</span>
-                    <span className="text-base md:text-lg font-black text-black tracking-tight">
+                    <span className="text-[10px] uppercase font-bold text-emerald-600 tracking-widest font-mono">RIVR Carrier Standard</span>
+                    <span className="text-base md:text-lg font-heading font-semibold text-black tracking-tight">
                       {s.say}
                     </span>
                   </div>

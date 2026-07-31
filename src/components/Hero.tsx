@@ -271,7 +271,7 @@ export default function Hero() {
                 <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-200">
                   <CheckCircle className="w-8 h-8 text-emerald-600" />
                 </div>
-                <h3 className="text-2xl font-black text-black mb-2">Request Received</h3>
+                <h3 className="text-2xl font-semibold text-black mb-2">Request Received</h3>
                 <p className="text-black/60 text-sm mb-6 leading-relaxed">
                   Your credentials request has been logged. Our integration desk will reach you shortly at the email provided.
                 </p>

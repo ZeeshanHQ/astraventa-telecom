@@ -83,9 +83,9 @@ export default function Metrics() {
                 className={borderClasses}
               >
                 <div className="flex flex-col">
-                  <span className="text-4xl md:text-6xl font-black tracking-tight text-black mb-2 select-none whitespace-nowrap">
+                  <span className="text-4xl md:text-6xl font-heading font-extrabold tracking-tight text-black mb-2 select-none whitespace-nowrap">
                     {m.prefix && (
-                      <span className="text-3xl md:text-5xl mr-1 font-black">{m.prefix}</span>
+                      <span className="text-3xl md:text-5xl mr-1 font-heading font-extrabold">{m.prefix}</span>
                     )}
                     {m.value}
                   </span>

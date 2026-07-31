@@ -26,10 +26,10 @@ export default function Pricing() {
                   <span className="text-xs uppercase font-bold text-cyan-600 tracking-widest font-mono block mb-1">
                     Starter Allocation
                   </span>
-                  <h3 className="text-2xl font-black text-black tracking-tight">Pay-As-You-Go</h3>
+                  <h3 className="text-2xl font-semibold text-black tracking-tight">Pay-As-You-Go</h3>
                 </div>
                 <div className="text-right">
-                  <span className="text-3xl font-black text-black">$10</span>
+                  <span className="text-3xl font-heading font-extrabold text-black">$10</span>
                   <span className="text-xs text-black/50 block font-semibold mt-1">minimum setup</span>
                 </div>
               </div>
@@ -79,10 +79,10 @@ export default function Pricing() {
                   <span className="text-xs uppercase font-bold text-emerald-600 tracking-widest font-mono block mb-1">
                     Corporate Trunking
                   </span>
-                  <h3 className="text-2xl font-black text-black tracking-tight">Enterprise Slabs</h3>
+                  <h3 className="text-2xl font-semibold text-black tracking-tight">Enterprise Slabs</h3>
                 </div>
                 <div className="text-right">
-                  <span className="text-3xl font-black text-black">Wholesale</span>
+                  <span className="text-3xl font-heading font-extrabold text-black">Wholesale</span>
                   <span className="text-xs text-black/50 block font-semibold mt-1">custom routing</span>
                 </div>
               </div>

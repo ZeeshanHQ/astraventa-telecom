@@ -223,7 +223,7 @@ function ServiceItem({ icon, title, description, variants, delay }: ServiceItemP
         <div className="text-cyan-600 bg-cyan-50 border border-cyan-100 p-2.5 rounded-xl transition-colors duration-300 group-hover:bg-cyan-100">
           {icon}
         </div>
-        <h3 className="text-lg font-black text-[#0a1b3a]">
+        <h3 className="text-lg font-semibold text-[#0a1b3a]">
           {title}
         </h3>
       </div>
