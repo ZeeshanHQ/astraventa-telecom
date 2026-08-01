@@ -226,6 +226,37 @@ export default function AdminDashboard() {
     handleTemplateChange(selectedTemplate, lead);
   };
 
+  const exportToCSV = () => {
+    if (filteredLeads.length === 0) return;
+    const headers = ["ID", "Created At", "Name", "Email", "Plan Type", "Call Volume", "Dialer Core / PBX", "Notes", "Status", "Source"];
+    const rows = filteredLeads.map(l => [
+      l.id,
+      new Date(l.created_at).toISOString(),
+      l.name.replace(/"/g, '""'),
+      l.email,
+      l.plan_type,
+      l.call_volume,
+      l.dialer_software,
+      (l.message || "").replace(/"/g, '""'),
+      l.status,
+      l.source
+    ]);
+    const csvContent = [
+      headers.join(","),
+      ...rows.map(r => r.map(val => `"${val}"`).join(","))
+    ].join("\n");
+    
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `astraventa_telecom_leads_${activeFilter}_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Metrics calculations
   const totalLeads = leads.length;
   const pendingLeads = leads.filter(l => l.status === "pending").length;
@@ -395,20 +426,29 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Pill filters */}
-                <div className="flex flex-wrap gap-1.5 p-1 bg-slate-50 rounded-xl border border-black/5 overflow-x-auto w-full md:w-auto">
-                  {(["all", "homepage", "ai-receptionist", "chatbot"] as const).map((filter) => (
-                    <button
-                      key={filter}
-                      onClick={() => setActiveFilter(filter)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold tracking-tight transition-all cursor-pointer capitalize ${
-                        activeFilter === filter 
-                          ? "bg-white text-black shadow-sm" 
-                          : "text-slate-400 hover:text-slate-700"
-                      }`}
-                    >
-                      {filter === "all" ? "All" : filter === "ai-receptionist" ? "AI Receptionist" : filter}
-                    </button>
-                  ))}
+                <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto scrollbar-none">
+                  <div className="flex flex-wrap gap-1.5 p-1 bg-slate-50 rounded-xl border border-black/5">
+                    {(["all", "homepage", "ai-receptionist", "chatbot"] as const).map((filter) => (
+                      <button
+                        key={filter}
+                        onClick={() => setActiveFilter(filter)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold tracking-tight transition-all cursor-pointer capitalize ${
+                          activeFilter === filter 
+                            ? "bg-white text-black shadow-sm" 
+                            : "text-slate-400 hover:text-slate-700"
+                        }`}
+                      >
+                        {filter === "all" ? "All" : filter === "ai-receptionist" ? "AI Receptionist" : filter}
+                      </button>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={exportToCSV}
+                    className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold tracking-tight transition-all cursor-pointer whitespace-nowrap"
+                  >
+                    Export CSV
+                  </button>
                 </div>
               </div>
 
