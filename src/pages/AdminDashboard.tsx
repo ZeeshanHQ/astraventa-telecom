@@ -42,6 +42,7 @@ export default function AdminDashboard() {
   const [activeFilter, setActiveFilter] = useState<"all" | "homepage" | "ai-receptionist" | "chatbot">("all");
 
   // Email form state
+  const [emailFrom, setEmailFrom] = useState("telecom@astraventa.com");
   const [emailTo, setEmailTo] = useState("");
   const [emailSubject, setEmailSubject] = useState("");
   const [emailBody, setEmailBody] = useState("");
@@ -162,6 +163,7 @@ export default function AdminDashboard() {
         body: JSON.stringify({
           password: pwd,
           action: "send_email",
+          from: emailFrom,
           to: emailTo,
           subject: emailSubject,
           html: formattedHtml
@@ -566,6 +568,23 @@ export default function AdminDashboard() {
               </div>
 
               <form onSubmit={handleSendEmail} className="space-y-4">
+                <div className="space-y-1.5">
+                  <label htmlFor="fromEmail" className="text-[10px] font-bold text-black/50 uppercase tracking-widest font-mono">Sender Email</label>
+                  <select
+                    id="fromEmail"
+                    value={emailFrom}
+                    onChange={(e) => setEmailFrom(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-50 border border-black/10 rounded-xl text-sm outline-none focus:bg-white focus:border-[#0052cc] transition-all font-medium text-black cursor-pointer"
+                  >
+                    <option value="telecom@astraventa.com">telecom@astraventa.com</option>
+                    <option value="haider@astraventa.com">haider@astraventa.com</option>
+                    <option value="zeeshan@astraventa.com">zeeshan@astraventa.com</option>
+                    <option value="telecom@astraventa.online">telecom@astraventa.online</option>
+                    <option value="haider@astraventa.online">haider@astraventa.online</option>
+                    <option value="zeeshan@astraventa.online">zeeshan@astraventa.online</option>
+                  </select>
+                </div>
+
                 <div className="space-y-1.5">
                   <label htmlFor="toEmail" className="text-[10px] font-bold text-black/50 uppercase tracking-widest font-mono">Recipient Email</label>
                   <input
