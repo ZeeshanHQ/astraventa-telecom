@@ -15,6 +15,7 @@ export default function ChatWidget() {
   const [capturedEmail, setCapturedEmail] = useState("");
   const [showTooltip, setShowTooltip] = useState(true);
   const [route, setRoute] = useState(window.location.hash || "#/");
+  const hasSavedLead = useRef(false);
 
   useEffect(() => {
     const handleHash = () => {
@@ -23,6 +24,29 @@ export default function ChatWidget() {
     window.addEventListener("hashchange", handleHash);
     return () => window.removeEventListener("hashchange", handleHash);
   }, []);
+
+  useEffect(() => {
+    if (capturedEmail && !hasSavedLead.current) {
+      hasSavedLead.current = true;
+      fetch("https://hqywadiibynypygskyif.supabase.co/functions/v1/telecom-leads-submit", {
+        method: "POST",
+        headers: {
+          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: capturedName || "Chatbot Visitor",
+          email: capturedEmail,
+          plan_type: "starter",
+          call_volume: "Chatbot Lead",
+          dialer_software: "Chatbot Dialog",
+          message: `Initiated via web chatbot. Active page: ${window.location.hash || '#/'}`,
+          source: "chatbot"
+        })
+      }).catch(err => console.error("Chatbot lead save error:", err));
+    }
+  }, [capturedEmail, capturedName]);
 
   const [messages, setMessages] = useState<Message[]>([
     {
