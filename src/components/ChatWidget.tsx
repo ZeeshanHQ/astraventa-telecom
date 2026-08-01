@@ -104,7 +104,7 @@ Guidelines:
           "X-Title": "Astraventa Chat"
         },
         body: JSON.stringify({
-          model: "meta-llama/llama-3.1-8b-instruct:free",
+          model: "inclusionai/ling-3.0-flash:free",
           messages: updatedHistory,
           temperature: 0.7,
           max_tokens: 350
