@@ -12,6 +12,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Documentation from "./pages/Documentation";
 import Infrastructure from "./pages/Infrastructure";
 import AiReceptionist from "./pages/AiReceptionist";
+import AdminDashboard from "./pages/AdminDashboard";
 import ChatWidget from "./components/ChatWidget";
 import Testimonial from "./components/Testimonial";
 import FAQ from "./components/FAQ";
@@ -48,6 +49,10 @@ function App() {
 
   if (route === "#/ai-receptionist") {
     return <AiReceptionist />;
+  }
+
+  if (route === "#/admin" || route === "#/dashboard") {
+    return <AdminDashboard />;
   }
 
   return (
