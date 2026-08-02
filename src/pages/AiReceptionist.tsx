@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import ChatWidget from "../components/ChatWidget";
 import Footer from "../components/Footer";
+import CalendlyEmbed from "../components/CalendlyEmbed";
 
 export default function AiReceptionist() {
   const [name, setName] = useState("");
@@ -231,22 +232,28 @@ export default function AiReceptionist() {
         <section id="demo-form" className="pt-8 border-t border-black/10">
           <div className="max-w-[760px] mx-auto space-y-8">
             {isSubmitted ? (
-              <div className="text-center py-12 sm:py-16 bg-slate-50 rounded-3xl border border-black/5 space-y-4">
-                <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100 text-emerald-600 shadow-sm">
-                  <CheckCircle className="w-8 h-8" />
+              <div className="text-center py-10 px-4 sm:px-6 bg-slate-50 rounded-3xl border border-black/5 space-y-6">
+                <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-2 border border-emerald-100 text-emerald-600 shadow-sm">
+                  <CheckCircle className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-heading font-medium text-black">Request submitted</h3>
-                <p className="text-black/55 text-sm max-w-md mx-auto leading-relaxed px-4">
-                  We have received your configuration details. An integration architect will reach out shortly to whitelist your voice node.
-                </p>
-                <div className="pt-4">
+                <div className="space-y-2">
+                  <h3 className="text-xl font-heading font-medium text-black">Step 2: Book Your Activation Call</h3>
+                  <p className="text-black/55 text-xs max-w-md mx-auto leading-relaxed">
+                    Request logged successfully. Please schedule a quick 15-minute call below to verify your whitelisting details and setup caller pools.
+                  </p>
+                </div>
+                
+                <CalendlyEmbed />
+
+                <div className="pt-2">
+                  <p className="text-slate-400 text-[11px] mb-2 font-medium">Or prefer direct support chat?</p>
                   <a 
                     href="https://wa.me/923267853405" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="bg-[#25D366] hover:bg-[#20ba59] text-white px-8 py-3.5 rounded-full font-sans font-medium text-sm transition shadow-sm text-decoration-none cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-2.5 rounded-full font-sans font-medium text-xs transition shadow-sm text-decoration-none cursor-pointer"
                   >
-                    Connect WhatsApp Integration Desk
+                    Connect WhatsApp Support
                   </a>
                 </div>
               </div>

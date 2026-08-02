@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ChevronRight, ArrowUpRight, CheckCircle } from "lucide-react";
+import CalendlyEmbed from "./CalendlyEmbed";
 
 export default function Hero() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -277,15 +278,20 @@ export default function Hero() {
             </button>
 
             {isSubmitted ? (
-              <div className="text-center p-12 max-w-md mx-auto animate-in fade-in zoom-in duration-200">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-200">
-                  <CheckCircle className="w-8 h-8 text-emerald-600" />
+              <div className="text-center p-6 sm:p-8 w-full animate-in fade-in zoom-in duration-200 space-y-6">
+                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2 border border-emerald-200 text-emerald-600">
+                  <CheckCircle className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-semibold text-black mb-2">Request Received</h3>
-                <p className="text-black/60 text-sm mb-6 leading-relaxed">
-                  Your credentials request has been logged. Our integration desk will reach you shortly at the email provided.
-                </p>
-                <div className="space-y-3">
+                <div className="space-y-1.5">
+                  <h3 className="text-xl font-heading font-medium text-black">Step 2: Book Your Activation Call</h3>
+                  <p className="text-black/55 text-xs max-w-lg mx-auto leading-relaxed">
+                    Trunk request initiated. Please select a convenient time slot below with an integration engineer to finalize whitelisting your custom caller pools.
+                  </p>
+                </div>
+
+                <CalendlyEmbed />
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                   <a
                     href={`https://wa.me/923267853405?text=${encodeURIComponent(
                       `Hi Astraventa Team, I've requested a voice trunk setup.\n\n` +
@@ -298,9 +304,9 @@ export default function Hero() {
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition duration-200 shadow-lg text-decoration-none cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition duration-200 shadow-md text-decoration-none cursor-pointer"
                   >
-                    <span>Start Direct WhatsApp Verification</span>
+                    <span>Verify Instantly via WhatsApp Support</span>
                   </a>
                   <button
                     onClick={() => {
@@ -308,9 +314,9 @@ export default function Hero() {
                       setIsSubmitted(false);
                       setResult("");
                     }}
-                    className="w-full py-3 bg-black/5 hover:bg-black/10 text-black/60 rounded-xl font-bold text-sm transition cursor-pointer"
+                    className="w-full sm:w-auto px-6 py-3.5 bg-black/5 hover:bg-black/10 text-black/60 rounded-2xl font-bold text-xs transition cursor-pointer"
                   >
-                    Close
+                    Close & Finish
                   </button>
                 </div>
               </div>

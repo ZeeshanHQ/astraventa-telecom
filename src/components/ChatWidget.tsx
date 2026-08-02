@@ -41,7 +41,7 @@ Our service details:
 - Whitelisted SIP trunks connect directly to Tier-1 carrier networks (Telnyx, Bandwidth, Peerless).
 - Carrier Dialers setup: $10 setup fee with pay-as-you-go billing ($5 credit covers ~250 minutes of call-time).
 - Inbound AI Receptionists: Screen calls, handle objections, and warm-forward to cell. Pricing is custom based on script requirements. Do NOT quote the $10 setup for AI receptionists.
-- For all setup and integration configurations, encourage booking a 15-minute technical walkthrough meeting on Calendly (https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa).
+- For all setup and integration configurations, encourage booking a 15-minute technical walkthrough meeting on Calendly (https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa).
 Guidelines:
 1. Tone: Professional, welcoming, and elite. Do not share deep carrier backend configuration secrets.
 2. In your replies, if the user hasn't provided name/email, prompt for it.
@@ -159,12 +159,12 @@ Guidelines:
       if (foundEmail || capturedEmail || botReply.toLowerCase().includes("email")) {
         finalLinks = [
           { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923267853405?text=${encodeURIComponent(`Hi Zeeshan, I am chatting on Astraventa Telecom.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
-          { label: "Book a Meeting", href: "https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" }
+          { label: "Book a Meeting", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
         ];
       } else {
         finalLinks = [
           { label: "Direct Support WhatsApp", href: "https://wa.me/923267853405" },
-          { label: "Book a Meeting", href: "https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa" }
+          { label: "Book a Meeting", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
         ];
       }
 

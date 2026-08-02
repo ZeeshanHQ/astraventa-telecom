@@ -249,7 +249,7 @@ export default function AdminDashboard() {
         `Hi ${lead.name},\n\n` +
         `I saw you requested integration parameters on our platform regarding your ${lead.dialer_software} dialer. We have initialized a whitelisting draft.\n\n` +
         `To help set up your localized caller pools and verify your route parameters, could you please pick a convenient 15-minute slot on my schedule?\n\n` +
-        `Book Here: https://calendly.com/astraventaai/15-min-technical-walkthrough-astraventa\n\n` +
+        `Book Here: https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa\n\n` +
         `Best regards,\n` +
         `Zeeshan Jay\n` +
         `Director, Astraventa Telecom`
