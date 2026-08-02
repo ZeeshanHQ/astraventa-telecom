@@ -32,7 +32,7 @@ export default function CalendlyEmbed({
   const embedUrl = `${url}?embed_domain=telecom.astraventa.com&embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1`;
 
   return (
-    <div className="w-full relative min-h-[600px] flex flex-col items-center justify-center bg-white rounded-3xl overflow-hidden border border-black/5">
+    <div className="w-full relative min-h-[700px] sm:min-h-[600px] flex flex-col items-center justify-center bg-white rounded-3xl overflow-hidden border border-black/5">
       
       {/* Brain-Tricking High-Tech Loading Spinner overlay */}
       {iframeLoading && (
@@ -60,7 +60,7 @@ export default function CalendlyEmbed({
       <iframe
         src={embedUrl}
         onLoad={() => setIframeLoading(false)}
-        className={`w-full min-h-[600px] h-[650px] border-none z-10 transition-opacity duration-700 ${
+        className={`w-full min-h-[700px] sm:min-h-[600px] h-[750px] sm:h-[650px] border-none z-10 transition-opacity duration-700 ${
           iframeLoading ? "opacity-0" : "opacity-100"
         }`}
         allow="camera; microphone; autoplay; clipboard-write; encrypted-media"
