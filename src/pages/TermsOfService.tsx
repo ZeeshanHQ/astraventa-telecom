@@ -13,7 +13,7 @@ export default function TermsOfService() {
 
         {/* Logo */}
         <div className="mb-12">
-          <img src="/logo.png" alt="Astraventa Telecom" className="h-16 w-auto object-contain object-left select-none" />
+          <img src="/astraventa-white.png" alt="Astraventa Telecom" className="h-16 w-auto object-contain object-left select-none" />
         </div>
 
         {/* Header */}
