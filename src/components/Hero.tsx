@@ -370,10 +370,13 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  <div className="hidden md:block pt-6 border-t border-black/5">
-                    <span className="text-[10px] text-black/40 font-bold uppercase tracking-wider font-mono">
-                      Astraventa Core Integration
+                  <div className="pt-6 border-t border-black/5 space-y-2">
+                    <span className="text-[9px] text-[#0052cc] font-bold uppercase tracking-widest font-mono block">
+                      Instant Live Demo
                     </span>
+                    <p className="text-[10px] text-black/60 leading-relaxed">
+                      Call our live AI representative at <strong className="text-black font-semibold select-all">+1 (925) 504-0101</strong> right now to test objection flows and warm-forwarding to Zeeshan Jay in real-time.
+                    </p>
                   </div>
                 </div>
 

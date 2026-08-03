@@ -112,6 +112,21 @@ export default function AiReceptionist() {
                 Contact sales
               </a>
             </div>
+
+            <div className="pt-6 border-t border-black/5 space-y-3">
+              <span className="text-[10px] uppercase font-bold tracking-widest font-mono text-[#0052cc] block">Interactive Sandbox Test</span>
+              <p className="text-xs text-black/60 leading-relaxed">
+                Experience our AI representative in real-time. Call our live company line at <strong className="text-black font-semibold select-all">+1 (925) 504-0101</strong>. 
+                Ask it about setup pricing, try to handle objections, or request to <strong className="text-black font-semibold">\"forward to Zeeshan\"</strong> to test our zero-latency warm-forwarding system.
+              </p>
+              <div className="flex items-center gap-2 text-xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-black/50 font-medium">Or text <a href="https://wa.me/923267853405" target="_blank" rel="noopener noreferrer" className="text-[#0052cc] hover:underline font-bold">+92 326 7853405</a> on WhatsApp to test auto-capture.</span>
+              </div>
+            </div>
           </div>
           
           {/* Floating Pure White Hero Illustration */}
