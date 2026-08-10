@@ -21,7 +21,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: "Are there any per-seat agent platform fees?",
-    answer: "No. We have completely eliminated per-seat software licensing fees. You pay purely for wholesale carrier utilization starting from a $10 setup credit ($5 calling credit grants over 250 minutes of talk-time). Add or remove outbound seats as you please.",
+    answer: "No. We have completely eliminated per-seat software licensing fees. You pay purely for wholesale carrier utilization starting from a $99 setup fee (which includes a $50 calling credit granting over 2,500 minutes of talk-time). Add or remove outbound seats as you please.",
   },
   {
     question: "How does the trunk health standby redundancy work?",

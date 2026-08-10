@@ -29,7 +29,7 @@ export default function Pricing() {
                   <h3 className="text-2xl font-semibold text-black tracking-tight">Pay-As-You-Go</h3>
                 </div>
                 <div className="text-right">
-                  <span className="text-3xl font-heading font-extrabold text-black">$10</span>
+                  <span className="text-3xl font-heading font-extrabold text-black">$99</span>
                   <span className="text-xs text-black/50 block font-semibold mt-1">minimum setup</span>
                 </div>
               </div>
@@ -39,7 +39,7 @@ export default function Pricing() {
                   Ideal for growing sales floors and small outreach campaigns requiring clean carrier trunks.
                 </p>
                 <div className="bg-cyan-50/50 border border-cyan-100 rounded-2xl p-4 text-xs text-cyan-800 leading-relaxed font-medium font-mono">
-                  💡 <strong className="text-cyan-950 font-bold">$5 dynamic calling credit</strong> grants 250 minutes of talk-time (over 4 hours of pure, seamless calls across multi-devices). Top-up credits instantly at any time.
+                  💡 <strong className="text-cyan-950 font-bold">$50 dynamic calling credit</strong> grants 2,500 minutes of talk-time (over 40 hours of pure, seamless calls across multi-devices). Top-up credits instantly at any time.
                 </div>
               </div>
 
@@ -67,7 +67,7 @@ export default function Pricing() {
               onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
               className="w-full py-4 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-2xl font-bold text-sm transition shadow-lg hover:shadow-xl active:scale-[0.98] cursor-pointer"
             >
-              Deploy Starter Node ($10)
+              Deploy Starter Node ($99)
             </button>
           </div>
 

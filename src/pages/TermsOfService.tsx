@@ -55,8 +55,8 @@ export default function TermsOfService() {
             <h2 className="text-xl font-semibold text-black tracking-tight mb-4">4. Billing and Credits</h2>
             <p className="mb-3">Astraventa operates on a wholesale dynamic billing model:</p>
             <ul className="space-y-2 pl-4">
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>A minimum initial deposit of $10 USD is required to activate service nodes.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Calling credits are consumed based on actual wholesale network utilization. A $5 calling credit provides approximately 250 minutes of talk-time under standard Tier-1 routing conditions.</span></li>
+              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>A minimum initial setup fee of $99 USD is required to activate service nodes (which includes a $50 calling credit).</span></li>
+              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Calling credits are consumed based on actual wholesale network utilization. A $50 calling credit provides approximately 2,500 minutes of talk-time under standard Tier-1 routing conditions.</span></li>
               <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Credits are non-refundable once consumed against network utilization.</span></li>
               <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Enterprise slab pricing and volume commitments are governed by separate commercial agreements.</span></li>
               <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>All billing is in USD. Transparent real-time CDRs are available at all times through the management dashboard.</span></li>

@@ -192,7 +192,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-white/90 text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-[550px] drop-shadow-md px-4"
           >
-            High-throughput SIP trunks and dynamic Caller ID rotation managed by Astraventa. Fully configured by our engineers in under 5 minutes. Initial setup starts from $10.
+            High-throughput SIP trunks and dynamic Caller ID rotation managed by Astraventa. Fully configured by our engineers in under 5 minutes. Initial setup starts from $99.
           </motion.p>
 
           {/* Action Buttons Group */}
@@ -345,7 +345,7 @@ export default function Hero() {
                           {selectedPlan === "starter" && <span className="w-2 h-2 rounded-full bg-[#0052cc]" />}
                         </div>
                         <span className="block text-[11px] text-black/55 leading-normal">
-                          Setup starts at $10. Pay-as-you-go whitelisted trunks. Perfect for small floors.
+                          Setup starts at $99. Pay-as-you-go whitelisted trunks. Perfect for small floors.
                         </span>
                       </button>
 

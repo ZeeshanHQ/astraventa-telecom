@@ -77,7 +77,7 @@ export default function AboutUsSection() {
       icon: <DollarSign className="w-6 h-6" />,
       title: "Volume Billing Slabs",
       description:
-        "No monthly software licenses. Pay purely for network utilization starting at $10. $5 credit yields 250 minutes of talk-time.",
+        "No monthly software licenses. Pay purely for network utilization starting at $99. $50 credit yields 2,500 minutes of talk-time.",
       position: "right",
     },
     {
@@ -188,7 +188,7 @@ export default function AboutUsSection() {
         >
           <div className="flex-1 flex flex-col gap-2">
             <h3 className="text-xl sm:text-2xl font-semibold text-black tracking-tight leading-none">Ready to integrate dynamic voice trunks?</h3>
-            <p className="text-xs sm:text-sm text-black/60 leading-relaxed font-medium">We config everything within 5 minutes. Initial setup is $10.</p>
+            <p className="text-xs sm:text-sm text-black/60 leading-relaxed font-medium">We config everything within 5 minutes. Initial setup is $99.</p>
           </div>
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
