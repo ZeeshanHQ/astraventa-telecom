@@ -7,6 +7,43 @@ interface Message {
   links?: { label: string; href: string }[];
 }
 
+// Helper to call Chrome's built-in local AI model (Gemini Nano) if enabled
+async function callLocalChromeAI(prompt: string, history: any[]): Promise<string> {
+  const systemMsg = history.find(h => h.role === "system")?.content || "";
+  const conversation = history
+    .filter(h => h.role !== "system")
+    .map(h => `${h.role === "user" ? "User" : "Assistant"}: ${h.content}`)
+    .join("\n");
+
+  const fullPrompt = `${systemMsg}\n\nHistory:\n${conversation}\n\nUser: ${prompt}\nAssistant:`;
+
+  try {
+    // 1. New Chrome window.ai.languageModel standard API
+    if (typeof window !== "undefined" && (window as any).ai?.languageModel) {
+      const capabilities = await (window as any).ai.languageModel.capabilities();
+      if (capabilities.available !== "no") {
+        const session = await (window as any).ai.languageModel.create({
+          systemPrompt: systemMsg
+        });
+        const response = await session.prompt(conversation + `\nUser: ${prompt}`);
+        session.destroy();
+        return response;
+      }
+    }
+
+    // 2. Legacy Chrome window.ai API
+    if (typeof window !== "undefined" && (window as any).ai?.createTextSession) {
+      const session = await (window as any).ai.createTextSession();
+      const response = await session.prompt(fullPrompt);
+      return response;
+    }
+  } catch (err) {
+    console.warn("Local Chrome AI execution failed:", err);
+  }
+
+  throw new Error("Chrome Local AI not available");
+}
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -126,30 +163,49 @@ Guidelines:
     setChatHistory(updatedHistory);
 
     try {
-      // Call OpenRouter API with dynamic free model
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${"sk-or-v" + "1-a44f1dce37dc022b0cdcabbdad0a2d9" + "897e8996c18bf21d2301ad25db7130e77"}`,
-          "HTTP-Referer": "https://astraventa.com",
-          "X-Title": "Astraventa Chat"
-        },
-        body: JSON.stringify({
-          model: "google/gemini-2.5-flash:free",
-          messages: updatedHistory,
-          temperature: 0.7,
-          max_tokens: 350
-        })
-      });
-
-      const data = await response.json();
-      
       let botReply = "";
-      if (data?.error) {
-        botReply = `OpenRouter Error: ${data.error.message || JSON.stringify(data.error)}`;
-      } else {
-        botReply = data?.choices?.[0]?.message?.content || "No response received. Please connect via WhatsApp.";
+
+      // 1. Try Local Chrome Built-in AI (Gemini Nano) first
+      const hasChromeAI = typeof window !== "undefined" && (
+        (window as any).ai?.languageModel !== undefined || 
+        (window as any).ai?.createTextSession !== undefined
+      );
+
+      if (hasChromeAI) {
+        try {
+          botReply = await callLocalChromeAI(userMsg, updatedHistory);
+        } catch (localErr) {
+          console.warn("Chrome local AI fallback to cloud:", localErr);
+        }
+      }
+
+      // 2. Fall back to OpenRouter if local AI is not active or failed
+      if (!botReply) {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${"sk-or-v" + "1-a44f1dce37dc022b0cdcabbdad0a2d9" + "897e8996c18bf21d2301ad25db7130e77"}`,
+            "HTTP-Referer": "https://astraventa.com",
+            "X-Title": "Astraventa Chat"
+          },
+          body: JSON.stringify({
+            model: "meta-llama/llama-3.3-70b-instruct:free", // Highly stable active free model router
+            messages: updatedHistory,
+            temperature: 0.7,
+            max_tokens: 350
+          })
+        });
+
+        const data = await response.json();
+        
+        if (data?.error) {
+          console.warn("OpenRouter API error:", data.error);
+          throw new Error("OpenRouter unavailable");
+        } else {
+          botReply = data?.choices?.[0]?.message?.content || "";
+          if (!botReply) throw new Error("Empty response");
+        }
       }
 
       setChatHistory((prev) => [...prev, { role: "assistant", content: botReply }]);
@@ -177,14 +233,29 @@ Guidelines:
         }
       ]);
     } catch (error: any) {
+      // 3. Elegant Professional Fallback instead of raw API errors
+      const emailCurrentlyProvided = capturedEmail || foundEmail;
+      
+      let fallbackReply = "";
+      if (!emailCurrentlyProvided) {
+        fallbackReply = "Our AI integration gateways are currently experiencing high volume. To immediately secure your whitelisted gateway endpoints, could you please enter your email address here? I will register it instantly so we can follow up.";
+      } else {
+        fallbackReply = "Thank you! Your email is saved. Our founder Zeeshan will follow up directly. You can also connect via WhatsApp or book a technical walkthrough slot using the links below.";
+      }
+
+      setChatHistory((prev) => [...prev, { role: "assistant", content: fallbackReply }]);
+
+      const fallbackLinks = [
+        { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923267853405?text=${encodeURIComponent(`Hi Zeeshan, I am setting up whitelisted voice trunks.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
+        { label: "Book Onboarding Call", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
+      ];
+
       setMessages((prev) => [
         ...prev,
         {
           sender: "bot",
-          text: `Interconnect Error: ${error?.message || "Connection timeout"}. Let's route your integration request directly over WhatsApp to our founder, Zeeshan.`,
-          links: [
-            { label: "Connect Zeeshan on WhatsApp", href: "https://wa.me/923267853405" }
-          ]
+          text: fallbackReply,
+          links: fallbackLinks
         }
       ]);
     } finally {
