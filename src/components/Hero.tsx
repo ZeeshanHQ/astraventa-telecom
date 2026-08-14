@@ -160,16 +160,24 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Right-aligned Request Test Line Button */}
-          <button 
-            onClick={() => setIsDemoModalOpen(true)}
-            className="flex items-center gap-2 bg-[#0a1b3a] hover:bg-[#0f2854] text-white px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer"
-          >
-            <span>Request Trunk</span>
-            <div className="bg-white/20 p-1 md:p-1.5 rounded-full">
-              <ArrowUpRight className="w-3 md:w-3.5 h-3 md:h-3.5 text-white" />
-            </div>
-          </button>
+          {/* Right-aligned Actions Group */}
+          <div className="flex items-center gap-2 md:gap-4 z-30">
+            <a 
+              href="https://voice.astraventa.com/login"
+              className="text-white/80 hover:text-white text-xs md:text-sm font-semibold tracking-wide transition-colors px-2.5 py-1.5 cursor-pointer"
+            >
+              Sign In
+            </a>
+            <button 
+              onClick={() => setIsDemoModalOpen(true)}
+              className="flex items-center gap-2 bg-[#0a1b3a] hover:bg-[#0f2854] text-white px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer"
+            >
+              <span>Get Started</span>
+              <div className="bg-white/20 p-1 md:p-1.5 rounded-full">
+                <ArrowUpRight className="w-3 md:w-3.5 h-3 md:h-3.5 text-white" />
+              </div>
+            </button>
+          </div>
         </nav>
 
         {/* Main Content Block */}
