@@ -190,13 +190,13 @@ export default function AboutUsSection() {
             <h3 className="text-xl sm:text-2xl font-semibold text-black tracking-tight leading-none">Ready to integrate dynamic voice trunks?</h3>
             <p className="text-xs sm:text-sm text-black/60 leading-relaxed font-medium">We config everything within 5 minutes. Initial setup is $99.</p>
           </div>
-          <button
-            onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-            className="bg-[#0052cc] hover:bg-[#0047b3] text-white px-8 py-3.5 rounded-full flex items-center gap-2 font-bold text-sm transition-all shadow-md active:scale-95 cursor-pointer whitespace-nowrap self-stretch md:self-auto text-center"
+          <a
+            href="https://voice.astraventa.com/signup"
+            className="bg-[#0052cc] hover:bg-[#0047b3] text-white px-8 py-3.5 rounded-full flex items-center justify-center gap-2 font-bold text-sm transition-all shadow-md active:scale-95 cursor-pointer whitespace-nowrap self-stretch md:self-auto text-center text-decoration-none"
           >
             <span>Managed Onboarding</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </motion.div>
       </motion.div>
     </section>

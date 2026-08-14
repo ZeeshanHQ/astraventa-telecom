@@ -1,60 +1,8 @@
-import { useState } from "react";
-import { CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ChatWidget from "../components/ChatWidget";
 import Footer from "../components/Footer";
-import CalendlyEmbed from "../components/CalendlyEmbed";
 
 export default function AiReceptionist() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [volume, setVolume] = useState("< 500 mins/mo");
-  const dialer = "Inbound AI Receptionist";
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [result, setResult] = useState("");
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name.trim() || !email.trim() || isSubmitting) return;
-    setIsSubmitting(true);
-    setResult("");
-
-    try {
-      const response = await fetch("https://hqywadiibynypygskyif.supabase.co/functions/v1/telecom-leads-submit", {
-        method: "POST",
-        headers: {
-          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          plan_type: "starter",
-          call_volume: volume,
-          dialer_software: dialer,
-          message: message || "Requested Inbound AI Receptionist Demo",
-          source: "ai-receptionist"
-        })
-      });
-
-      const data = await response.json();
-      if (response.ok && data.success) {
-        setIsSubmitted(true);
-        setName("");
-        setEmail("");
-        setMessage("");
-      } else {
-        setResult(`Submission Error: ${data.error || "Please try again."}`);
-      }
-    } catch (error: any) {
-      setResult(`Connection Error: ${error?.message || "Please try again."}`);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="w-full min-h-screen bg-white relative">
       
@@ -94,11 +42,7 @@ export default function AiReceptionist() {
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <a 
-                href="#demo-form" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("demo-form")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                href="https://voice.astraventa.com/signup" 
                 className="bg-[#0052cc] hover:bg-[#0047b3] text-white px-6 sm:px-8 py-3.5 rounded-full font-sans font-medium text-sm transition shadow-sm active:scale-95 text-center text-decoration-none cursor-pointer"
               >
                 Get started
@@ -243,128 +187,50 @@ export default function AiReceptionist() {
           </div>
         </section>
 
-        {/* Minimal Lead Capture Form */}
-        <section id="demo-form" className="pt-8 border-t border-black/10">
-          <div className="max-w-[760px] mx-auto space-y-8">
-            {isSubmitted ? (
-              <div className="text-center py-10 px-4 sm:px-6 bg-slate-50 rounded-3xl border border-black/5 space-y-6">
-                <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-2 border border-emerald-100 text-emerald-600 shadow-sm">
-                  <CheckCircle className="w-6 h-6" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-heading font-medium text-black">Step 2: Book Your Activation Call</h3>
-                  <p className="text-black/55 text-xs max-w-md mx-auto leading-relaxed">
-                    Request logged successfully. Please schedule a quick 15-minute call below to verify your whitelisting details and setup caller pools.
-                  </p>
-                </div>
-                
-                <CalendlyEmbed />
+        {/* Self-Serve & Direct Setup Gateway */}
+        <section id="demo-form" className="pt-12 border-t border-black/10">
+          <div className="max-w-[760px] mx-auto text-center space-y-8">
+            <div className="space-y-3">
+              <span className="text-xs uppercase font-bold text-cyan-600 tracking-wider font-mono">
+                Instant Provisioning
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-heading font-medium text-black tracking-tight">
+                Launch Your AI Receptionist in Minutes
+              </h2>
+              <p className="text-sm sm:text-base text-black/60 max-w-xl mx-auto">
+                Sign up directly on our voice console, select the $149/mo Starter Receptionist tier, configure your forwarding number, and go live instantly.
+              </p>
+            </div>
 
-                <div className="pt-2">
-                  <p className="text-slate-400 text-[11px] mb-2 font-medium">Or prefer direct support chat?</p>
-                  <a 
-                    href="https://wa.me/923267853405" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-2.5 rounded-full font-sans font-medium text-xs transition shadow-sm text-decoration-none cursor-pointer"
-                  >
-                    Connect WhatsApp Support
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-8 px-2 sm:px-0">
-                <div className="text-center space-y-3">
-                  <h2 className="text-2xl sm:text-3xl font-heading font-medium text-black tracking-tight">Request Integration</h2>
-                  <p className="text-xs sm:text-sm text-black/55">
-                    Submit your details and setup preferences. We will customize your calling node script.
-                  </p>
-                </div>
-                
-                <form onSubmit={onSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="space-y-1.5">
-                      <label htmlFor="name" className="text-xs font-bold text-black/60 uppercase tracking-wider font-mono">Contact Name</label>
-                      <input
-                        id="name"
-                        type="text"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Your name"
-                        className="w-full px-4 py-3 bg-white border border-black/15 rounded-xl text-sm outline-none focus:border-[#0052cc] transition-colors font-medium text-black/85"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="email" className="text-xs font-bold text-black/60 uppercase tracking-wider font-mono">Work Email</label>
-                      <input
-                        id="email"
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@company.com"
-                        className="w-full px-4 py-3 bg-white border border-black/15 rounded-xl text-sm outline-none focus:border-[#0052cc] transition-colors font-medium text-black/85"
-                      />
-                    </div>
-                  </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+              <a
+                href="https://voice.astraventa.com/signup"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0052cc] hover:bg-[#0047b3] text-white px-8 py-4 rounded-full font-medium text-sm transition shadow-md active:scale-95 text-decoration-none"
+              >
+                <span>Deploy AI Receptionist ($149/mo)</span>
+                <ArrowRight className="w-4 h-4 text-white" />
+              </a>
+              <a
+                href="https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-black px-8 py-4 rounded-full font-medium text-sm transition active:scale-95 text-decoration-none"
+              >
+                <span>Schedule 15-Min Live Demo</span>
+              </a>
+            </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="space-y-1.5">
-                      <label htmlFor="volume" className="text-xs font-bold text-black/60 uppercase tracking-wider font-mono">Est. Volume / mo</label>
-                      <select
-                        id="volume"
-                        value={volume}
-                        onChange={(e) => setVolume(e.target.value)}
-                        className="w-full px-4 py-3 bg-white border border-black/15 rounded-xl text-sm outline-none focus:border-[#0052cc] transition-colors font-medium text-black/85 cursor-pointer"
-                      >
-                        <option value="< 500 mins/mo">&lt; 500 mins/mo</option>
-                        <option value="500 - 5k mins/mo">500 - 5k mins/mo</option>
-                        <option value="5k - 20k mins/mo">5k - 20k mins/mo</option>
-                        <option value="20k - 100k mins/mo">20k - 100k mins/mo</option>
-                        <option value="100k+ mins/mo">100k+ mins/mo</option>
-                      </select>
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="dialer" className="text-xs font-bold text-black/60 uppercase tracking-wider font-mono">Platform Integration</label>
-                      <input
-                        id="dialer"
-                        type="text"
-                        disabled
-                        value={dialer}
-                        className="w-full px-4 py-3 bg-slate-50 border border-black/15 rounded-xl text-sm font-medium text-black/55 select-none"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label htmlFor="message" className="text-xs font-bold text-black/60 uppercase tracking-wider font-mono">Specific Routing Rules</label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="e.g. Forward calls to +1 925 504 0101 when clients ask for Zeeshan..."
-                      className="w-full px-4 py-3 bg-white border border-black/15 rounded-xl text-sm outline-none focus:border-[#0052cc] transition-colors font-medium text-black/85 resize-none"
-                    />
-                  </div>
-
-                  {result && (
-                    <p className="text-xs font-bold text-red-600 tracking-tight">{result}</p>
-                  )}
-
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 bg-[#0052cc] hover:bg-[#0047b3] text-white rounded-xl font-sans font-medium text-sm transition shadow-sm active:scale-[0.98] cursor-pointer disabled:opacity-50"
-                    >
-                      {isSubmitting ? "Provisioning..." : "Submit request"}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            )}
+            <div className="pt-6">
+              <p className="text-slate-400 text-xs mb-3 font-medium">Prefer direct WhatsApp activation support?</p>
+              <a 
+                href="https://wa.me/923267853405" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-2.5 rounded-full font-sans font-medium text-xs transition shadow-sm text-decoration-none"
+              >
+                Connect WhatsApp Support (+92 326 7853405)
+              </a>
+            </div>
           </div>
         </section>
       </main>

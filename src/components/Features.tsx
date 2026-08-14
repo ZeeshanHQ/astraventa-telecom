@@ -12,12 +12,12 @@ export default function Features() {
               Architected for high-volume outbound floors
             </h2>
           </div>
-          <button 
-            onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-            className="border border-black/10 hover:border-black/30 hover:bg-black/5 text-black px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 cursor-pointer"
+          <a 
+            href="https://voice.astraventa.com/signup"
+            className="border border-black/10 hover:border-black/30 hover:bg-black/5 text-black px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 cursor-pointer text-decoration-none"
           >
             Deploy Dialer Node
-          </button>
+          </a>
         </div>
 
         {/* Features Grid */}

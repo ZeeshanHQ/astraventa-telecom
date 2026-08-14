@@ -29,13 +29,13 @@ export default function CTA() {
           </h2>
 
           <div className="flex flex-row items-center gap-4 justify-center flex-wrap">
-            <button 
-              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-              className="bg-white hover:bg-white/90 text-black px-8 py-4 rounded-full font-bold text-sm flex items-center gap-2.5 transition duration-300 shadow-lg active:scale-95 cursor-pointer border-none"
+            <a 
+              href="https://voice.astraventa.com/signup"
+              className="bg-white hover:bg-white/90 text-black px-8 py-4 rounded-full font-bold text-sm flex items-center gap-2.5 transition duration-300 shadow-lg active:scale-95 cursor-pointer text-decoration-none"
             >
-              <span>Connect with an Architect</span>
+              <span>Deploy Voice Gateway</span>
               <ArrowRight className="w-4 h-4 text-black" />
-            </button>
+            </a>
             
             <a 
               href="tel:+19255040101"

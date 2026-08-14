@@ -214,12 +214,12 @@ export default function Hero() {
             >
               Request Free Demo
             </button>
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-              className="bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 active:scale-95 cursor-pointer"
+            <a
+              href="https://voice.astraventa.com/signup"
+              className="bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 active:scale-95 cursor-pointer text-decoration-none"
             >
-              Deploy Starter Node
-            </button>
+              Deploy Starter Node ($99)
+            </a>
           </motion.div>
         </motion.div>
 

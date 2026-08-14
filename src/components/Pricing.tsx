@@ -63,12 +63,12 @@ export default function Pricing() {
               </ul>
             </div>
 
-            <button 
-              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-              className="w-full py-4 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-2xl font-bold text-sm transition shadow-lg hover:shadow-xl active:scale-[0.98] cursor-pointer"
+            <a 
+              href="https://voice.astraventa.com/signup"
+              className="w-full py-4 bg-[#0a1b3a] hover:bg-[#0f2854] text-white rounded-2xl font-bold text-sm transition shadow-lg hover:shadow-xl active:scale-[0.98] cursor-pointer text-center block text-decoration-none"
             >
               Deploy Starter Node ($99)
-            </button>
+            </a>
           </div>
 
           {/* Card 2: Enterprise Tier */}
@@ -113,12 +113,14 @@ export default function Pricing() {
               </ul>
             </div>
 
-            <button 
-              onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-              className="w-full py-4 border border-black/10 hover:border-black/30 hover:bg-black/5 text-black rounded-2xl font-bold text-sm transition active:scale-[0.98] cursor-pointer"
+            <a 
+              href="https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-4 border border-black/10 hover:border-black/30 hover:bg-black/5 text-black rounded-2xl font-bold text-sm transition active:scale-[0.98] cursor-pointer text-center block text-decoration-none"
             >
               Contact Enterprise Desk
-            </button>
+            </a>
           </div>
 
         </div>
