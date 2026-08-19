@@ -188,7 +188,7 @@ export default function AboutUsSection() {
         >
           <div className="flex-1 flex flex-col gap-2">
             <h3 className="text-xl sm:text-2xl font-semibold text-black tracking-tight leading-none">Ready to integrate dynamic voice trunks?</h3>
-            <p className="text-xs sm:text-sm text-black/60 leading-relaxed font-medium">We config everything within 5 minutes. Initial setup is $99.</p>
+            <p className="text-xs sm:text-sm text-black/60 leading-relaxed font-medium">Instant automated provisioning in under 60 seconds. Starter tiers begin from $29/mo.</p>
           </div>
           <a
             href="https://voice.astraventa.com/signup"

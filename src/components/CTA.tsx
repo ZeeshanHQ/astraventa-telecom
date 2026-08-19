@@ -24,8 +24,8 @@ export default function CTA() {
 
         {/* CTA Content Layer */}
         <div className="relative z-10 text-center flex flex-col items-center justify-center max-w-[700px] text-white">
-          <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-10 leading-[1.1] max-w-[15ch]">
-            Melt legacy licensing into fluid call routing.
+          <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-10 leading-[1.1] max-w-[18ch]">
+            Start calling with your entire team in minutes.
           </h2>
 
           <div className="flex flex-row items-center gap-4 justify-center flex-wrap">
@@ -33,7 +33,7 @@ export default function CTA() {
               href="https://voice.astraventa.com/signup"
               className="bg-white hover:bg-white/90 text-black px-8 py-4 rounded-full font-bold text-sm flex items-center gap-2.5 transition duration-300 shadow-lg active:scale-95 cursor-pointer text-decoration-none"
             >
-              <span>Deploy Voice Gateway</span>
+              <span>Get Started ($29/mo)</span>
               <ArrowRight className="w-4 h-4 text-black" />
             </a>
             

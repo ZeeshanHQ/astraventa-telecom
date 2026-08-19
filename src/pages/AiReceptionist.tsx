@@ -128,12 +128,11 @@ export default function AiReceptionist() {
                 </div>
               </div>
               <div className="lg:col-span-6 space-y-4 md:space-y-5">
-                <span className="text-xs font-heading font-medium text-cyan-600 uppercase tracking-wider font-mono">Objection Handling</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-normal text-black tracking-tight leading-snug">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-medium text-slate-900 tracking-tight leading-snug">
                   Secure Objection Management
                 </h2>
-                <p className="text-sm sm:text-base text-black/55 leading-relaxed font-sans font-normal">
-                  Equipped with dynamic dialog flows that process queries natively. Resolves questions about pricing, setup, or routing rules securely and cleanly without awkward mechanical loops.
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans font-normal">
+                  Equipped with dynamic dialog flows that process customer queries natively. Resolves questions about pricing, setup, or business hours cleanly without awkward mechanical loops.
                 </p>
               </div>
             </div>
@@ -151,12 +150,11 @@ export default function AiReceptionist() {
                 </div>
               </div>
               <div className="lg:col-span-6 lg:order-1 space-y-4 md:space-y-5">
-                <span className="text-xs font-heading font-medium text-emerald-600 uppercase tracking-wider font-mono">Seamless Transfer</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-normal text-black tracking-tight leading-snug">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-medium text-slate-900 tracking-tight leading-snug">
                   Warm Call Forwarding
                 </h2>
-                <p className="text-sm sm:text-base text-black/55 leading-relaxed font-sans font-normal">
-                  Bridges important callers directly to your cell phone when clients ask for you by name or meet pre-configured qualification conditions. Keeps your sales pipeline moving in real-time.
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans font-normal">
+                  Bridges important callers directly to your cell phone when clients ask for you by name or meet qualification criteria. Keeps your sales pipeline moving in real-time.
                 </p>
               </div>
             </div>
@@ -174,12 +172,11 @@ export default function AiReceptionist() {
                 </div>
               </div>
               <div className="lg:col-span-6 space-y-4 md:space-y-5">
-                <span className="text-xs font-heading font-medium text-indigo-600 uppercase tracking-wider font-mono">Speed Infrastructure</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-normal text-black tracking-tight leading-snug">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-medium text-slate-900 tracking-tight leading-snug">
                   Sub-800ms Latency Routing
                 </h2>
-                <p className="text-sm sm:text-base text-black/55 leading-relaxed font-sans font-normal">
-                  Built straight on Tier-1 voice routing gates to eliminate communication delay. Real-time turn-taking flows naturally, ensuring users cannot tell they are speaking with an automation.
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans font-normal">
+                  Built straight on Tier-1 voice routing gates to eliminate communication delay. Real-time turn-taking flows naturally, ensuring callers have a fluid conversation without interruptions.
                 </p>
               </div>
             </div>
@@ -191,9 +188,6 @@ export default function AiReceptionist() {
         <section id="demo-form" className="pt-12 border-t border-black/10">
           <div className="max-w-[760px] mx-auto text-center space-y-8">
             <div className="space-y-3">
-              <span className="text-xs uppercase font-bold text-cyan-600 tracking-wider font-mono">
-                Instant Provisioning
-              </span>
               <h2 className="text-3xl sm:text-4xl font-heading font-medium text-black tracking-tight">
                 Launch Your AI Receptionist in Minutes
               </h2>

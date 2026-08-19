@@ -1,90 +1,127 @@
-import { ArrowLeft, Cpu, Network, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShieldCheck, Zap, Globe } from "lucide-react";
+import Footer from "../components/Footer";
+import ChatWidget from "../components/ChatWidget";
 
 export default function Infrastructure() {
   return (
-    <div className="w-full min-h-screen bg-white px-4 md:px-8 py-12 md:py-20">
-      <div className="max-w-[960px] mx-auto">
+    <div className="w-full min-h-screen bg-[#f9fafb]">
+      
+      {/* Top Header Navbar */}
+      <header className="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200/80">
+        <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+          <a href="#/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity select-none">
+            <img src="/astraventa-white.png" alt="Astraventa Logo" className="h-7 w-auto object-contain" />
+            <span className="text-lg font-bold text-slate-900 tracking-tight">
+              Astraventa
+            </span>
+          </a>
+          <a 
+            href="#/" 
+            className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to Home
+          </a>
+        </div>
+      </header>
 
-        {/* Back link */}
-        <a href="#/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-black/40 hover:text-black transition-colors mb-14 font-mono group">
-          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-          Back to Home
-        </a>
+      {/* Main Container */}
+      <main className="w-full max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24 space-y-16">
 
-        {/* Logo */}
-        <div className="mb-12">
-          <img src="/astraventa-white.png" alt="Astraventa Telecom" className="h-16 w-auto object-contain object-left select-none" />
+        {/* Page Header */}
+        <div className="max-w-3xl space-y-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.1]">
+            Global Voice Network Infrastructure
+          </h1>
+          <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
+            Engineered for high-volume sales teams, support desks, and call centers requiring sub-second call setup, zero dropped audio, and clean carrier reputation.
+          </p>
         </div>
 
-        {/* Header */}
-        <div className="mb-14">
-          <span className="text-xs uppercase tracking-widest font-bold text-black/35 font-mono block mb-3">System Architecture</span>
-          <h1 className="text-4xl md:text-6xl font-semibold text-black tracking-tight leading-none mb-4">Telecom Infrastructure</h1>
-          <p className="text-sm text-black/50 font-medium">Under the hood of Astraventa's whitelisted Tier-1 voice routing hubs</p>
+        {/* 3-Column Architecture Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          {/* Card 1 */}
+          <div className="bg-white rounded-[2rem] p-8 border border-slate-200/80 shadow-sm space-y-4 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-xs">
+                <Globe className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight">
+                Tier-1 Direct Carrier Routing
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                Direct interconnection with major telecom carriers across North America and Europe. Eliminates intermediary hops to deliver HD audio fidelity and 99.99% uptime.
+              </p>
+            </div>
+            <div className="text-[11px] font-mono font-semibold text-blue-700 bg-blue-50/70 px-3 py-1.5 rounded-xl w-fit">
+              99.99% SLA Uptime
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-white rounded-[2rem] p-8 border border-slate-200/80 shadow-sm space-y-4 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shadow-xs">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight">
+                Caller ID Reputation Protection
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                Continuous automated reputation monitoring for every assigned business number. Ensures cold outbound campaigns stay verified and bypass 'Spam Likely' filters.
+              </p>
+            </div>
+            <div className="text-[11px] font-mono font-semibold text-emerald-700 bg-emerald-50/70 px-3 py-1.5 rounded-xl w-fit">
+              STIR/SHAKEN Level A
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white rounded-[2rem] p-8 border border-slate-200/80 shadow-sm space-y-4 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-xs">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight">
+                Sub-120ms In-Browser Audio
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                Modern WebRTC protocol establishes real-time audio streams directly inside your browser. No softphone software to install, configure, or troubleshoot.
+              </p>
+            </div>
+            <div className="text-[11px] font-mono font-semibold text-indigo-700 bg-indigo-50/70 px-3 py-1.5 rounded-xl w-fit">
+              Zero Software Required
+            </div>
+          </div>
+
         </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-black/10 mb-14" />
-
-        {/* Content Section */}
-        <div className="space-y-12 text-sm text-black/70 leading-relaxed font-medium">
-
-          {/* Section 1: Carrier Interconnect Map */}
-          <section className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-black/5">
-            <div className="flex items-center gap-3 mb-6">
-              <Network className="w-6 h-6 text-cyan-600" />
-              <h2 className="text-xl font-semibold text-black tracking-tight">1. Tier-1 Direct Interconnects</h2>
-            </div>
-            <p className="mb-4">
-              We eliminate cheap retail VoIP trunks. Your outbound traffic connects directly to whitelisted Tier-1 telecom backhauls (including Telnyx, Bandwidth, and Peerless routing pools).
+        {/* Bottom CTA Card */}
+        <div className="bg-white rounded-[2.5rem] p-10 md:p-14 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="space-y-2 max-w-xl text-center md:text-left">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Ready to launch your business calling workspace?
+            </h2>
+            <p className="text-sm text-slate-600 font-medium">
+              Get dedicated numbers, agent seats, and preloaded minutes in under 60 seconds.
             </p>
-            <p>
-              By utilizing private carrier trunks instead of recycled public pools, call delivery metrics bypass spam heuristics natively, resulting in double the connection rates compared to standard VoIP services.
-            </p>
-          </section>
-
-          {/* Section 2: Caller ID (DID) Anti-Spam Rotation */}
-          <section className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-black/5">
-            <div className="flex items-center gap-3 mb-6">
-              <Cpu className="w-6 h-6 text-cyan-600" />
-              <h2 className="text-xl font-semibold text-black tracking-tight">2. Algorithmic DID Rotation</h2>
-            </div>
-            <p className="mb-4">
-              Outbound campaigns run dynamic caller identification algorithms. Caller IDs are rotated systematically across localized areas code matching your call lists.
-            </p>
-            <p>
-               trk-rotation engine maintains real-time reputation monitoring for every assigned phone number. Any number that triggers carrier labeling is automatically isolated and placed in a cooling pool, replacing it with a fresh whitelisted DID.
-            </p>
-          </section>
-
-          {/* Section 3: Fail-Over heartbeats */}
-          <section className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-black/5">
-            <div className="flex items-center gap-3 mb-6">
-              <Zap className="w-6 h-6 text-cyan-600" />
-              <h2 className="text-xl font-semibold text-black tracking-tight">3. Fail-Safe Node Heartbeats</h2>
-            </div>
-            <p className="mb-4">
-              Our technical monitoring layer tracks trunk latency and call setup failures in real-time. If an upstream carrier gateway experiences latency greater than 80ms, traffic is dynamically switched to hot-standby trunks.
-            </p>
-            <p>
-              This architecture guarantees call centers constant connectivity and eliminates audio lag during peak US calling shifts.
-            </p>
-          </section>
-
-        </div>
-
-        {/* Footer divider */}
-        <div className="w-full h-px bg-black/10 mt-16 mb-8" />
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <span className="text-xs text-black/35 font-bold">&copy; 2026 Astraventa. All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#/privacy" className="text-xs text-black/35 hover:text-black transition-colors font-bold">Privacy Policy</a>
-            <a href="#/terms" className="text-xs text-black/35 hover:text-black transition-colors font-bold">Terms of Service</a>
-            <a href="#/" className="text-xs text-black/35 hover:text-black transition-colors font-bold">Back to Home</a>
+          </div>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <a
+              href="https://voice.astraventa.com/signup"
+              className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-full font-bold text-sm transition shadow-sm text-decoration-none inline-flex items-center gap-2"
+            >
+              <span>Get Started ($29/mo)</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
 
-      </div>
+      </main>
+
+      <Footer />
+      <ChatWidget />
     </div>
   );
 }

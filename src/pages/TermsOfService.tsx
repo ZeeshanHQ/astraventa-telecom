@@ -1,130 +1,182 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2, FileText } from "lucide-react";
+import Footer from "../components/Footer";
+import ChatWidget from "../components/ChatWidget";
 
 export default function TermsOfService() {
   return (
-    <div className="w-full min-h-screen bg-white px-4 md:px-8 py-12 md:py-20">
-      <div className="max-w-[860px] mx-auto">
+    <div className="w-full min-h-screen bg-[#f9fafb]">
+      
+      {/* Top Header Navbar */}
+      <header className="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200/80">
+        <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+          <a href="#/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity select-none">
+            <img src="/astraventa-white.png" alt="Astraventa Logo" className="h-7 w-auto object-contain" />
+            <span className="text-lg font-bold text-slate-900 tracking-tight">
+              Astraventa
+            </span>
+          </a>
+          <a 
+            href="#/" 
+            className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to Home
+          </a>
+        </div>
+      </header>
 
-        {/* Back link */}
-        <a href="#/" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-black/40 hover:text-black transition-colors mb-14 font-mono group">
-          <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-          Back to Home
-        </a>
+      {/* Main Container */}
+      <main className="w-full max-w-[960px] mx-auto px-6 md:px-12 py-16 md:py-24 space-y-12">
 
-        {/* Logo */}
-        <div className="mb-12">
-          <img src="/astraventa-white.png" alt="Astraventa Telecom" className="h-16 w-auto object-contain object-left select-none" />
+        {/* Page Header */}
+        <div className="space-y-4">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.15]">
+            Terms of Service
+          </h1>
+          <p className="text-sm text-slate-500 font-medium">
+            Last Updated: August 2026 &nbsp;·&nbsp; Effective Immediately
+          </p>
         </div>
 
-        {/* Header */}
-        <div className="mb-14">
-          <span className="text-xs uppercase tracking-widest font-bold text-black/35 font-mono block mb-3">Legal Documentation</span>
-          <h1 className="text-4xl md:text-6xl font-semibold text-black tracking-tight leading-none mb-4">Terms of Service</h1>
-          <p className="text-sm text-black/50 font-medium">Last updated: July 2, 2026 &nbsp;·&nbsp; Effective immediately</p>
+        {/* Highlight Card */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-3">
+          <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
+            <FileText className="w-4 h-4" />
+            <span>Customer Service Agreement</span>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+            These Terms of Service govern your access to and use of Astraventa Telecom's cloud voice services, web dialer consoles, phone numbers, and AI telephony features. By creating an account or subscribing to any plan on voice.astraventa.com, you agree to comply with these terms.
+          </p>
         </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-black/10 mb-14" />
+        {/* Terms Sections */}
+        <div className="space-y-10 text-sm text-slate-700 leading-relaxed font-medium">
 
-        {/* Content */}
-        <div className="space-y-14 text-sm text-black/70 leading-relaxed font-medium">
-
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">1. Acceptance of Terms</h2>
-            <p>By accessing or using any services provided by Astraventa Telecom, a division of Astraventa Advanced Engineering ("Astraventa", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree to all terms herein, you must discontinue use of our services immediately.</p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">2. Service Description</h2>
-            <p className="mb-3">Astraventa Telecom provides the following managed telecommunications services:</p>
-            <ul className="space-y-2 pl-4">
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Managed SIP trunk provisioning via whitelisted Tier-1 US carrier interconnects.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Dynamic Caller ID rotation and STIR/SHAKEN Level A compliant DID assignment.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Enterprise cloud dialer node access, provisioned at no per-seat licensing cost.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Wholesale dynamic calling credit billing with real-time call detail records.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Fail-safe routing with 24/7 monitoring and hot-standby node switching.</span></li>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              1. Platform Services & Account Registration
+            </h2>
+            <p>
+              Astraventa Telecom provides cloud business communication software including:
+            </p>
+            <ul className="space-y-2 pt-2 pl-2">
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <span>Dedicated and shared US/Canada local and toll-free business numbers.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <span>In-browser WebRTC voice dialers, two-way SMS messaging, and auto call recordings.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <span>Multi-agent workspace management with Admin, Manager, and Agent permission levels.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <span>Automated Inbound AI Receptionist and intelligent warm call-forwarding infrastructure.</span>
+              </li>
             </ul>
+            <p className="pt-2">
+              You must be at least 18 years old and provide accurate business registration information to establish a workspace.
+            </p>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">3. Eligibility and Account</h2>
-            <p>Services are available to registered businesses and professional users only. You represent that you are at least 18 years old, have the authority to bind your organization to these terms, and will use the services only for lawful business purposes.</p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">4. Billing and Credits</h2>
-            <p className="mb-3">Astraventa operates on a wholesale dynamic billing model:</p>
-            <ul className="space-y-2 pl-4">
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>A minimum initial setup fee of $99 USD is required to activate service nodes (which includes a $50 calling credit).</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Calling credits are consumed based on actual wholesale network utilization. A $50 calling credit provides approximately 2,500 minutes of talk-time under standard Tier-1 routing conditions.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Credits are non-refundable once consumed against network utilization.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Enterprise slab pricing and volume commitments are governed by separate commercial agreements.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>All billing is in USD. Transparent real-time CDRs are available at all times through the management dashboard.</span></li>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              2. Subscription Plans, Billing & Stripe Payments
+            </h2>
+            <p>
+              Astraventa operates on transparent recurring monthly subscriptions:
+            </p>
+            <ul className="space-y-2.5 pt-2 pl-2">
+              <li>• <strong>Starter Plan ($29/month):</strong> Includes 2 seats, 1 dedicated number, 250 talk minutes, 250 SMS, and free HD recordings.</li>
+              <li>• <strong>Growth Plan ($79/month):</strong> Includes 5 seats, 2 dedicated numbers, 1,000 talk minutes, 500 SMS, and team analytics.</li>
+              <li>• <strong>Scale Plan ($199/month):</strong> Includes up to 15 seats, 5 dedicated numbers, 3,000 talk minutes, 1,500 SMS, and priority routing.</li>
+              <li>• <strong>AI Receptionist Tier ($149/month):</strong> Includes automated AI call answering and zero-latency cell forwarding.</li>
             </ul>
+            <p className="pt-2">
+              <strong>Billing Authorization:</strong> Payments are processed securely through <strong>Stripe</strong>. By adding a payment method, you authorize Astraventa and Stripe to charge your card on a recurring monthly basis until you cancel.
+            </p>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">5. Acceptable Use Policy</h2>
-            <p className="mb-3">You agree not to use Astraventa Telecom services for:</p>
-            <ul className="space-y-2 pl-4">
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Any activity that violates the Telephone Consumer Protection Act (TCPA), FCC regulations, or applicable local telecommunications law.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Automated dialing of emergency services or hospital lines.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Spoofing caller identity for fraudulent, deceptive, or criminal purposes.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Distributing malware, phishing content, or conducting social engineering attacks.</span></li>
-              <li className="flex gap-3"><span className="text-black/30 font-mono mt-0.5">—</span><span>Exceeding allocated bandwidth in a manner that degrades service for other users on shared infrastructure.</span></li>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              3. Cancellation, Upgrades & Refund Policy
+            </h2>
+            <p>
+              <strong>Cancel Anytime:</strong> You may cancel your subscription at any time directly through your billing settings or by notifying support. Cancellation takes effect at the end of your current monthly billing period with no termination penalties.
+            </p>
+            <p>
+              <strong>Refunds:</strong> Subscriptions are billed in advance on a monthly basis. Monthly subscription fees are generally non-refundable once the monthly billing cycle begins, except where required by applicable consumer law or in the case of verified service downtime exceeding our SLA commitments.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              4. Telephony Regulations & Acceptable Use (TCPA & STIR/SHAKEN)
+            </h2>
+            <p>
+              You agree to use Astraventa services strictly for lawful business communication. You explicitly agree not to:
+            </p>
+            <ul className="space-y-2 pt-2 pl-2">
+              <li>• Violate the Telephone Consumer Protection Act (TCPA), CAN-SPAM Act, or Telemarketing Sales Rule.</li>
+              <li>• Transmit unauthorized, deceptive, harassing, or illegal robocalls or unsolicited SMS spam.</li>
+              <li>• Spoof Caller IDs to misrepresent business identity or deceive recipients.</li>
+              <li>• Attempt to dial 911 or emergency services through unsupported browser sandbox endpoints.</li>
             </ul>
-            <p className="mt-3">Violation of this policy will result in immediate service suspension without refund and may be reported to relevant regulatory authorities.</p>
+            <p className="pt-2 text-xs text-amber-700 bg-amber-50 p-4 rounded-xl border border-amber-200/80">
+              <strong>Regulatory Notice:</strong> Accounts found engaging in spam or fraudulent dialing are subject to immediate suspension without refund to protect carrier reputation and network integrity.
+            </p>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">6. STIR/SHAKEN Compliance</h2>
-            <p>All outbound calls routed through Astraventa trunks are subject to STIR/SHAKEN attestation. You are responsible for ensuring that caller IDs assigned to your account accurately represent your business identity. Misuse of attestation credentials may result in account termination and regulatory referral.</p>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              5. Number Porting & Ownership
+            </h2>
+            <p>
+              You may port existing US/Canada numbers to Astraventa without fee. While you maintain an active subscription in good standing, you retain the right to port your numbers out to any other carrier of your choice.
+            </p>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">7. Service Availability</h2>
-            <p>We target 99.9% uptime across all routing nodes. Scheduled maintenance windows will be communicated at least 48 hours in advance. Astraventa is not liable for service interruptions caused by upstream carrier outages, force majeure events, or circumstances outside our direct control. Enterprise SLA agreements with guaranteed uptime commitments are available upon request.</p>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              6. Service Level Agreement (SLA) & Uptime
+            </h2>
+            <p>
+              Astraventa targets 99.99% network uptime across carrier interconnects. Planned maintenance windows are scheduled during off-peak hours with prior email notification.
+            </p>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">8. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by applicable law, Astraventa's total cumulative liability arising from or related to these terms shall not exceed the total amounts paid by you for services in the 3-month period preceding the claim. We are not liable for indirect, incidental, special, consequential, or punitive damages.</p>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              7. Limitation of Liability
+            </h2>
+            <p>
+              To the maximum extent permitted by applicable law, Astraventa shall not be liable for indirect, incidental, special, consequential, or punitive damages. Astraventa's aggregate liability under this agreement shall not exceed the total amount paid by you in the three (3) months preceding the incident.
+            </p>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">9. Termination</h2>
-            <p>Either party may terminate services with 7 days written notice. Astraventa reserves the right to suspend or terminate accounts immediately for violations of the Acceptable Use Policy or non-payment. Upon termination, call records are retained for the statutory minimum period and then deleted.</p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">10. Governing Law</h2>
-            <p>These terms are governed by and construed in accordance with the laws of the United States. Any disputes arising from these terms shall be subject to binding arbitration under AAA Commercial Arbitration Rules.</p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-black tracking-tight mb-4">11. Contact</h2>
-            <p>For service or legal inquiries, contact our operations desk:</p>
-            <div className="mt-4 bg-white rounded-2xl p-6 border border-black/5 space-y-2">
-              <p className="font-bold text-black">Astraventa Advanced Engineering</p>
-              <a href="mailto:zeeshan@astraventa.com" className="text-black/60 hover:text-black transition-colors block">zeeshan@astraventa.com</a>
-              <a href="tel:+19255040101" className="text-black/60 hover:text-black transition-colors block">+1 925 504 0101</a>
-              <a href="https://wa.me/923267853405" target="_blank" rel="noopener noreferrer" className="text-black/60 hover:text-black transition-colors block">WhatsApp: +92 326 7853405</a>
+          <section className="space-y-3">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              8. Contact Information
+            </h2>
+            <p>For questions or support regarding these terms, please contact our legal desk:</p>
+            <div className="bg-white rounded-2xl p-6 border border-slate-200 space-y-1.5 text-xs sm:text-sm">
+              <p className="font-bold text-slate-900">Astraventa Advanced Engineering</p>
+              <p className="text-slate-600">Primary Contact Desk: <a href="mailto:contact@astraventa.com" className="text-blue-600 hover:underline font-bold">contact@astraventa.com</a></p>
+              <p className="text-slate-600">Legal Desk: <a href="mailto:legal@astraventa.com" className="text-blue-600 hover:underline">legal@astraventa.com</a></p>
+              <p className="text-slate-600">US Phone: +1 (925) 504-0101</p>
+              <p className="text-slate-600">WhatsApp Desk: +92 326 7853405</p>
             </div>
           </section>
 
         </div>
 
-        {/* Footer divider */}
-        <div className="w-full h-px bg-black/10 mt-16 mb-8" />
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <span className="text-xs text-black/35 font-bold">&copy; 2026 Astraventa. All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#/privacy" className="text-xs text-black/35 hover:text-black transition-colors font-bold">Privacy Policy</a>
-            <a href="#/" className="text-xs text-black/35 hover:text-black transition-colors font-bold">Back to Home</a>
-          </div>
-        </div>
+      </main>
 
-      </div>
+      <Footer />
+      <ChatWidget />
     </div>
   );
 }

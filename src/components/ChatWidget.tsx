@@ -210,17 +210,17 @@ Guidelines:
 
       setChatHistory((prev) => [...prev, { role: "assistant", content: botReply }]);
       
-      // If we got email, offer direct WhatsApp handover links
+      // Dynamic Action Links (Self-Serve SaaS & Booking)
       let finalLinks: { label: string; href: string }[] = [];
       if (foundEmail || capturedEmail || botReply.toLowerCase().includes("email")) {
         finalLinks = [
-          { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923267853405?text=${encodeURIComponent(`Hi Zeeshan, I am chatting on Astraventa Telecom.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
-          { label: "Book a Meeting", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
+          { label: "Get Started Now", href: "https://voice.astraventa.com/signup" },
+          { label: "Book Onboarding Call", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
         ];
       } else {
         finalLinks = [
-          { label: "Direct Support WhatsApp", href: "https://wa.me/923267853405" },
-          { label: "Book a Meeting", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
+          { label: "Get Started Now", href: "https://voice.astraventa.com/signup" },
+          { label: "Book Onboarding Call", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
         ];
       }
 
@@ -238,15 +238,15 @@ Guidelines:
       
       let fallbackReply = "";
       if (!emailCurrentlyProvided) {
-        fallbackReply = "Our AI integration gateways are currently experiencing high volume. To immediately secure your whitelisted gateway endpoints, could you please enter your email address here? I will register it instantly so we can follow up.";
+        fallbackReply = "Our voice workspace is live and ready for your team. You can sign up directly to pick your business numbers, or book an onboarding call below with our engineering desk.";
       } else {
-        fallbackReply = "Thank you! Your email is saved. Our founder Zeeshan will follow up directly. You can also connect via WhatsApp or book a technical walkthrough slot using the links below.";
+        fallbackReply = "Thank you! Your email is saved. You can get started immediately on our voice console or book an onboarding call using the links below.";
       }
 
       setChatHistory((prev) => [...prev, { role: "assistant", content: fallbackReply }]);
 
       const fallbackLinks = [
-        { label: "Connect Zeeshan on WhatsApp", href: `https://wa.me/923267853405?text=${encodeURIComponent(`Hi Zeeshan, I am setting up whitelisted voice trunks.\nName: ${capturedName || 'Visitor'}\nEmail: ${capturedEmail || foundEmail?.[0] || 'Pending'}`)}` },
+        { label: "Get Started Now", href: "https://voice.astraventa.com/signup" },
         { label: "Book Onboarding Call", href: "https://calendly.com/astraventa/15-min-technical-walkthrough-astraventa" }
       ];
 
@@ -278,8 +278,8 @@ Guidelines:
         <div className="fixed bottom-[26px] right-24 z-50 bg-white border border-black/10 rounded-2xl px-4 py-3 shadow-lg flex items-center gap-3 animate-in fade-in slide-in-from-right-4 duration-300 max-w-[280px]">
           <div className="text-[11px] text-black/75 font-sans font-semibold leading-snug">
             {route === "#/ai-receptionist" 
-              ? "🚀 Missed calls are lost clients. Our Inbound AI Receptionist answers instantly, handles objections, and routes leads. Chat with us!"
-              : "🚀 Need whitelisted SIP trunks or high-volume AI Dialers? Get whitelisted in 5 minutes. Chat with us!"}
+              ? "Missed calls are lost clients. Our Inbound AI Receptionist answers instantly and routes leads. Chat with us!"
+              : "Need help choosing the right plan or onboarding your team? Chat with us live!"}
           </div>
           <button 
             onClick={(e) => {

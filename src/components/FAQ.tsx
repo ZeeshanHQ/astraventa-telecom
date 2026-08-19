@@ -8,24 +8,24 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "How do I connect my dialer or softphone?",
-    answer: "Our integration engineers configure your secure SIP trunks and deliver direct credentials. You can bind them into any SIP-compatible softphone, PBX core, or CRM platform in under 5 minutes. No complex programming or code is required.",
+    question: "Do I need to install any software or softphone?",
+    answer: "No. Astraventa Voice is 100% web-based. Simply log into your dashboard in Google Chrome, Safari, or on mobile to start calling, texting, and accessing recordings immediately. No hardware deskphones or manual SIP configurations needed.",
   },
   {
-    question: "Is there a limit on daily routed call minutes?",
-    answer: "No. Our Tier-1 network backhauls are engineered for high-throughput, supporting millions of daily routed minutes. We handle wholesale outbound volume slabs with whitelisted reputation nodes that bypass carrier-level throttling.",
+    question: "Can I assign different phone numbers to specific agents?",
+    answer: "Yes. You can assign dedicated US/Canada phone numbers to individual sales reps or create shared group lines where incoming calls ring multiple team members at the same time.",
   },
   {
-    question: "How does localized Caller ID rotation work?",
-    answer: "Our routing nodes match outbound numbers to target local area codes dynamically. This native rotation is compliant with STIR/SHAKEN standards, keeping your lines whitelisted by carrier filters and preventing 'Spam Likely' tags.",
+    question: "Are call recordings really 100% free and automatic?",
+    answer: "Yes. Every inbound and outbound call is automatically recorded in crystal-clear HD audio with no extra fees or storage caps. You can listen, search, and review call logs anytime from your web dashboard.",
   },
   {
-    question: "Are there any per-seat agent platform fees?",
-    answer: "No. We have completely eliminated per-seat software licensing fees. You pay purely for wholesale carrier utilization starting from a $99 setup fee (which includes a $50 calling credit granting over 2,500 minutes of talk-time). Add or remove outbound seats as you please.",
+    question: "Are there any hidden setup fees or per-seat penalties?",
+    answer: "No. You pay straightforward monthly pricing starting at $29/mo for 2 seats, $79/mo for 5 seats, and $199/mo for up to 15 seats. Every tier includes dedicated numbers, monthly talk minutes, and free SMS.",
   },
   {
-    question: "How does the trunk health standby redundancy work?",
-    answer: "If an upstream carrier network node experiences latency peaks or connection drops, our fail-safe routing layer automatically redirects outgoing calls to hot-standby nodes within 180ms, ensuring call center connectivity.",
+    question: "Can I bring and port my existing business numbers?",
+    answer: "Yes. You can port your existing US, Canada, or toll-free numbers for free with zero downtime or service interruption.",
   },
 ];
 

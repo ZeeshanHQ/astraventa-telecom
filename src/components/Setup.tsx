@@ -1,4 +1,4 @@
-import { KeyRound, ShieldCheck, PhoneCall } from "lucide-react";
+import { Globe, Users2, Mic } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface Step {
@@ -11,21 +11,33 @@ interface Step {
 const steps: Step[] = [
   {
     stepNum: "STEP 01",
-    title: "Setup credentials",
-    desc: "Generate secure, whitelisted SIP trunk credentials for your outbound voice campaigns in under a minute.",
-    icon: <KeyRound className="w-6 h-6 text-[#0052cc]" />,
+    title: "Pick Your Business Number",
+    desc: "Select a dedicated US/Canada local number or toll-free line. Ready to dial in seconds with zero hardware.",
+    icon: (
+      <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-xs">
+        <Globe className="w-5 h-5" />
+      </div>
+    ),
   },
   {
     stepNum: "STEP 02",
-    title: "Register softphone",
-    desc: "Bind credentials directly into your active dialer, PBX cluster, or softphone console.",
-    icon: <ShieldCheck className="w-6 h-6 text-[#0052cc]" />,
+    title: "Invite & Assign Agents",
+    desc: "Create Admin, Manager, and Agent seats with custom permissions, shared lines, and personal privacy logs.",
+    icon: (
+      <div className="w-11 h-11 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-xs">
+        <Users2 className="w-5 h-5" />
+      </div>
+    ),
   },
   {
     stepNum: "STEP 03",
-    title: "Start calling",
-    desc: "Initiate high-volume outbound campaigns with Tier-1 connection attestation that bypasses carrier spam blocks.",
-    icon: <PhoneCall className="w-6 h-6 text-[#0052cc]" />,
+    title: "Dial from Web Dashboard",
+    desc: "No software or softphone to install. Dial, text, and access crystal-clear HD call recordings directly in your browser.",
+    icon: (
+      <div className="w-11 h-11 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shadow-xs">
+        <Mic className="w-5 h-5" />
+      </div>
+    ),
   },
 ];
 
@@ -56,13 +68,13 @@ export default function Setup() {
     <section id="setup" className="w-full bg-[#f9fafb] py-8 md:py-12 px-4 md:px-8 border-t border-black/5">
       <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12">
         
-        {/* Header */}
-        <div className="text-center mb-12 max-w-[800px] mx-auto flex flex-col items-center">
-          <h2 className="text-3xl md:text-4xl font-semibold text-black tracking-tight mb-4 leading-none">
-            5-minute setup
+        {/* Header - Clean, No Top Label */}
+        <div className="text-center mb-14 md:mb-20 max-w-[800px] mx-auto space-y-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.15]">
+            Go live with your team in under 60 seconds.
           </h2>
-          <p className="text-sm text-black/60 leading-relaxed font-medium max-w-[600px]">
-            You do not need to be technical. Our integration desk handles all whitelisting, gateway configurations, and routing setups for you.
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
+            Zero complicated PBX server installations. Simply sign up, pick your business numbers, assign agent seats, and dial directly from any browser.
           </p>
         </div>
 

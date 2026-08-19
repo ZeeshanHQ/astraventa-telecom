@@ -1,86 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
-import { ChevronRight, ArrowUpRight, CheckCircle } from "lucide-react";
-import CalendlyEmbed from "./CalendlyEmbed";
+import { ChevronRight, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
 
 export default function Hero() {
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-  const [result, setResult] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<"starter" | "enterprise">("starter");
-  const [formDataState, setFormDataState] = useState<{
-    name: string;
-    email: string;
-    message: string;
-    plan: string;
-    volume: string;
-    dialer: string;
-  } | null>(null);
-
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setResult("Registering gateway endpoints...");
-    
-    const target = event.currentTarget;
-    const formData = new FormData(target);
-    
-    // Honeypot spam protection check
-    const botcheck = formData.get("botcheck");
-    if (botcheck) {
-      setResult("Spam detected.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const message = formData.get("message") as string || "None";
-    const volume = formData.get("volume") as string || "Not specified";
-    const dialer = formData.get("dialer") as string || "Not specified";
-
-    try {
-      const response = await fetch("https://hqywadiibynypygskyif.supabase.co/functions/v1/telecom-leads-submit", {
-        method: "POST",
-        headers: {
-          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxeXdhZGlpYnlueXB5Z3NreWlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNzc1MDgsImV4cCI6MjA4OTk1MzUwOH0.psjTFW7hVfSpxw_jy-_UR2h0b-m_OC9EmGJV_pbZ-3I",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          plan_type: selectedPlan,
-          call_volume: volume,
-          dialer_software: dialer,
-          message: message,
-          source: "homepage"
-        })
-      });
-
-      const data = await response.json();
-      if (response.ok && data.success) {
-        setFormDataState({ name, email, message, plan: selectedPlan, volume, dialer });
-        setIsSubmitted(true);
-        setResult("");
-        target.reset();
-      } else {
-        setResult(`Submission Error: ${data.error || "Please try again."}`);
-        setIsSubmitting(false);
-      }
-    } catch (error: any) {
-      setResult(`Connection Error: ${error?.message || "Please try again."}`);
-      setIsSubmitting(false);
-    }
-  };
-
-  // Stagger animation container
-  useEffect(() => {
-    const handleOpenModal = () => setIsDemoModalOpen(true);
-    window.addEventListener("open-request-modal", handleOpenModal);
-    return () => window.removeEventListener("open-request-modal", handleOpenModal);
-  }, []);
+  const [isMuted, setIsMuted] = useState(true);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -146,17 +69,47 @@ export default function Hero() {
 
           {/* Desktop Centered Links (Logo is hidden on desktop) */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 text-white/95">
-            <a href="#/infrastructure" className="hover:text-white transition-colors text-sm font-medium tracking-wide">
-              Infrastructure
+            <a 
+              href="#workplace-features" 
+              onClick={(e) => {
+                const el = document.getElementById("workplace-features");
+                if (el) {
+                  e.preventDefault();
+                  el.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="hover:text-white transition-colors text-sm font-medium tracking-wide"
+            >
+              Features
             </a>
-            <a href="#pricing" className="hover:text-white transition-colors text-sm font-medium tracking-wide flex items-center gap-1">
-              Trunk Slabs <ChevronRight className="w-4 h-4 text-white/60" />
+            <a 
+              href="#pricing" 
+              onClick={(e) => {
+                const el = document.getElementById("pricing");
+                if (el) {
+                  e.preventDefault();
+                  el.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="hover:text-white transition-colors text-sm font-medium tracking-wide flex items-center gap-1"
+            >
+              Pricing & Plans <ChevronRight className="w-4 h-4 text-white/60" />
             </a>
-            <a href="#setup" className="hover:text-white transition-colors text-sm font-medium tracking-wide">
-              Setup Flow
+            <a href="#/ai-receptionist" className="hover:text-white transition-colors text-sm font-medium tracking-wide">
+              AI Receptionist
             </a>
-            <a href="#standards" className="hover:text-white transition-colors text-sm font-medium tracking-wide">
-              Standards
+            <a 
+              href="#setup" 
+              onClick={(e) => {
+                const el = document.getElementById("setup");
+                if (el) {
+                  e.preventDefault();
+                  el.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="hover:text-white transition-colors text-sm font-medium tracking-wide"
+            >
+              How It Works
             </a>
           </div>
 
@@ -168,15 +121,15 @@ export default function Hero() {
             >
               Sign In
             </a>
-            <button 
-              onClick={() => setIsDemoModalOpen(true)}
-              className="flex items-center gap-2 bg-[#0a1b3a] hover:bg-[#0f2854] text-white px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer"
+            <a 
+              href="https://voice.astraventa.com/signup"
+              className="flex items-center gap-2 bg-[#0a1b3a] hover:bg-[#0f2854] text-white px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer text-decoration-none"
             >
               <span>Get Started</span>
               <div className="bg-white/20 p-1 md:p-1.5 rounded-full">
                 <ArrowUpRight className="w-3 md:w-3.5 h-3 md:h-3.5 text-white" />
               </div>
-            </button>
+            </a>
           </div>
         </nav>
 
@@ -200,7 +153,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-white/90 text-xs sm:text-sm md:text-base font-normal leading-relaxed max-w-[550px] drop-shadow-md px-4"
           >
-            High-throughput SIP trunks and dynamic Caller ID rotation managed by Astraventa. Fully configured by our engineers in under 5 minutes. Initial setup starts from $99.
+            High-throughput WebRTC & SIP dialing nodes with dedicated US numbers, pre-loaded minutes, and dynamic Caller ID rotation. Starter plans from just $29/mo.
           </motion.p>
 
           {/* Action Buttons Group */}
@@ -208,20 +161,38 @@ export default function Hero() {
             variants={itemVariants}
             className="flex items-center gap-4 mt-6 flex-wrap justify-center"
           >
-            <button
-              onClick={() => setIsDemoModalOpen(true)}
-              className="bg-white hover:bg-white/95 text-[#0a1b3a] px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md active:scale-95 cursor-pointer"
+            <a
+              href="https://voice.astraventa.com/signup"
+              className="bg-white hover:bg-white/95 text-[#0a1b3a] px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 shadow-md active:scale-95 cursor-pointer text-decoration-none"
             >
-              Request Free Demo
-            </button>
+              Start Free Trial
+            </a>
             <a
               href="https://voice.astraventa.com/signup"
               className="bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 active:scale-95 cursor-pointer text-decoration-none"
             >
-              Deploy Starter Node ($99)
+              <span>Explore Dashboard ($29/mo)</span>
             </a>
           </motion.div>
         </motion.div>
+
+        {/* Global Sound Toggle Controls in Top-Right Corner of video */}
+        <div className="absolute top-24 md:top-28 right-6 md:right-12 z-30 flex items-center gap-3">
+          <button
+            onClick={() => setIsMuted(!isMuted)}
+            className="p-2.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/10 text-white transition duration-300 cursor-pointer shadow-lg active:scale-95 group flex items-center gap-2"
+            title={isMuted ? "Unmute Video Background" : "Mute Video Background"}
+          >
+            {isMuted ? (
+              <VolumeX className="w-4 h-4 text-white/80 group-hover:text-white" />
+            ) : (
+              <Volume2 className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300" />
+            )}
+            <span className="text-[10px] uppercase font-bold tracking-widest font-mono text-white/80 group-hover:text-white hidden sm:inline">
+              {isMuted ? "Sound: Off" : "Sound: On"}
+            </span>
+          </button>
+        </div>
 
         {/* Bottom Left Card */}
         <div className="absolute bottom-6 left-6 right-6 md:right-auto md:bottom-10 md:left-10 z-20 flex flex-col items-start gap-3 bg-white/30 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-xl max-w-[280px] sm:max-w-[260px] text-white mx-auto sm:mx-0">
@@ -229,17 +200,16 @@ export default function Hero() {
             <span className="text-xs uppercase tracking-widest text-white/70 font-semibold mb-1">Network Capacity</span>
             <span className="text-2xl font-bold tracking-tight">5.2M Daily Minutes</span>
           </div>
-          <button
-            onClick={() => setIsDemoModalOpen(true)}
-            className="w-full text-center bg-white text-[#0a1b3a] hover:bg-white/95 px-4 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all shadow-md active:scale-95 cursor-pointer"
+          <a
+            href="https://voice.astraventa.com/signup"
+            className="w-full text-center bg-white text-[#0a1b3a] hover:bg-white/95 px-4 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all shadow-md active:scale-95 cursor-pointer text-decoration-none"
           >
-            Initiate Managed Setup
-          </button>
+            Get Started Free
+          </a>
         </div>
 
-        {/* Bottom Right Corner Architectural Cut-out (Hidden on Mobile to prevent overlap) */}
+        {/* Bottom Right Corner Architectural Cut-out */}
         <div className="hidden md:flex absolute bottom-0 right-0 bg-[#f0f0f0] p-6 pt-8 pl-14 rounded-tl-[3.5rem] z-20 items-center gap-4 shadow-[-10px_10px_30px_rgba(0,0,0,0.02)]">
-          {/* Crucial Inverted Corner SVG Trick */}
           {/* Top Inverted Corner */}
           <div className="absolute right-0 bottom-full w-14 h-14 pointer-events-none">
             <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -263,239 +233,12 @@ export default function Hero() {
             </div>
             <div className="flex flex-col">
               <span className="text-xs text-black/40 uppercase tracking-widest font-bold font-mono">Documentation</span>
-              <span className="text-sm text-black/80 font-bold tracking-tight">Trunk / API Specs</span>
+              <span className="text-sm text-black/80 font-bold tracking-tight">API & Console Specs</span>
             </div>
           </a>
         </div>
 
       </section>
-
-      {/* Request Test Trunk Modal */}
-      {isDemoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
-          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[95vh] overflow-y-auto shadow-2xl relative border border-black/5 animate-in fade-in zoom-in duration-200">
-            
-            {/* Close Button Top Right */}
-            <button
-              onClick={() => setIsDemoModalOpen(false)}
-              className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/5 cursor-pointer z-20"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {isSubmitted ? (
-              <div className="text-center p-6 sm:p-8 w-full animate-in fade-in zoom-in duration-200 space-y-6">
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2 border border-emerald-200 text-emerald-600">
-                  <CheckCircle className="w-6 h-6" />
-                </div>
-                <div className="space-y-1.5">
-                  <h3 className="text-xl font-heading font-medium text-black">Step 2: Book Your Activation Call</h3>
-                  <p className="text-black/55 text-xs max-w-lg mx-auto leading-relaxed">
-                    Trunk request initiated. Please select a convenient time slot below with an integration engineer to finalize whitelisting your custom caller pools.
-                  </p>
-                </div>
-
-                <CalendlyEmbed />
-
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                  <a
-                    href={`https://wa.me/923267853405?text=${encodeURIComponent(
-                      `Hi Astraventa Team, I've requested a voice trunk setup.\n\n` +
-                      `• *Name:* ${formDataState?.name}\n` +
-                      `• *Email:* ${formDataState?.email}\n` +
-                      `• *Plan:* ${formDataState?.plan?.toUpperCase()}\n` +
-                      `• *Est. Volume:* ${formDataState?.volume}\n` +
-                      `• *Dialer:* ${formDataState?.dialer}\n` +
-                      `• *Notes:* ${formDataState?.message || "None"}`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition duration-200 shadow-md text-decoration-none cursor-pointer"
-                  >
-                    <span>Verify Instantly via WhatsApp Support</span>
-                  </a>
-                  <button
-                    onClick={() => {
-                      setIsDemoModalOpen(false);
-                      setIsSubmitted(false);
-                      setResult("");
-                    }}
-                    className="w-full sm:w-auto px-6 py-3.5 bg-black/5 hover:bg-black/10 text-black/60 rounded-2xl font-bold text-xs transition cursor-pointer"
-                  >
-                    Close & Finish
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-5">
-                
-                {/* Left Pane: Plan Option Selector */}
-                <div className="col-span-2 bg-slate-50/70 p-8 border-b md:border-b-0 md:border-r border-black/5 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-lg font-bold text-black mb-1 font-sans tracking-tight">Integration Plan</h3>
-                    <p className="text-xs text-black/55 mb-6">Choose your deployment node structure to match your floor requirements.</p>
-                    
-                    <div className="space-y-3">
-                      {/* Starter Option */}
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPlan("starter")}
-                        className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer ${
-                          selectedPlan === "starter"
-                            ? "bg-white border-[#0052cc] shadow-sm"
-                            : "bg-transparent border-black/10 hover:border-black/25"
-                        }`}
-                      >
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="text-xs font-bold text-black uppercase tracking-wider">Starter Node</span>
-                          {selectedPlan === "starter" && <span className="w-2 h-2 rounded-full bg-[#0052cc]" />}
-                        </div>
-                        <span className="block text-[11px] text-black/55 leading-normal">
-                          Setup starts at $99. Pay-as-you-go whitelisted trunks. Perfect for small floors.
-                        </span>
-                      </button>
-
-                      {/* Enterprise Option */}
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPlan("enterprise")}
-                        className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer ${
-                          selectedPlan === "enterprise"
-                            ? "bg-white border-[#0052cc] shadow-sm"
-                            : "bg-transparent border-black/10 hover:border-black/25"
-                        }`}
-                      >
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="text-xs font-bold text-black uppercase tracking-wider">Enterprise Redundancy</span>
-                          {selectedPlan === "enterprise" && <span className="w-2 h-2 rounded-full bg-[#0052cc]" />}
-                        </div>
-                        <span className="block text-[11px] text-black/55 leading-normal">
-                          Fail-safe hot backup nodes with SLA guarantees. Engineered for large outbound floors.
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="pt-6 border-t border-black/5 space-y-2">
-                    <span className="text-[9px] text-[#0052cc] font-bold uppercase tracking-widest font-mono block">
-                      Instant Live Demo
-                    </span>
-                    <p className="text-[10px] text-black/60 leading-relaxed">
-                      Call our live AI representative at <strong className="text-black font-semibold select-all">+1 (925) 504-0101</strong> right now to test objection flows and warm-forwarding to Zeeshan Jay in real-time.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Right Pane: Contact Form */}
-                <form onSubmit={onSubmit} className="col-span-3 p-8 space-y-4">
-                  {/* Honeypot Spam Protection */}
-                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} autoComplete="off" />
-
-                  <h3 className="text-xl font-bold text-black tracking-tight leading-none mb-1 font-sans">
-                    Node Parameters
-                  </h3>
-                  <p className="text-xs text-black/55 mb-4">Provide details to register your whitelisted gateway endpoints.</p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Alex Rivera"
-                        required
-                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/85"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
-                        Work Email
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="alex@company.com"
-                        required
-                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/85"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
-                        Est. Call Volume
-                      </label>
-                      <select
-                        name="volume"
-                        required
-                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/80"
-                      >
-                        <option value="Under 100k mins/mo">Under 100k mins/mo</option>
-                        <option value="100k - 1M mins/mo">100k - 1M mins/mo</option>
-                        <option value="1M - 5M mins/mo">1M - 5M mins/mo</option>
-                        <option value="Over 5M mins/mo">Over 5M mins/mo</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
-                        Dialer Core / PBX
-                      </label>
-                      <select
-                        name="dialer"
-                        className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition text-xs font-medium text-black/80"
-                      >
-                        <option value="Not Sure / Softphone">Not Sure / Direct Softphone</option>
-                        <option value="VICIdial / GoAutodial">VICIdial / GoAutodial</option>
-                        <option value="Asterisk / FreePBX">Asterisk / FreePBX</option>
-                        <option value="3CX / Softphone">3CX / Softphone</option>
-                        <option value="Custom API / Other">Custom API / Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] uppercase tracking-wider font-bold text-black/50 mb-1 font-sans">
-                      Special Requirements
-                    </label>
-                    <textarea
-                      name="message"
-                      placeholder="Specify customized Caller ID rotation parameters or standby target cores..."
-                      className="w-full p-2.5 bg-black/5 border border-black/10 rounded-xl outline-none focus:border-black transition h-14 resize-none text-xs font-medium text-black/85"
-                    />
-                  </div>
-
-                  {result && (
-                    <div className="text-xs font-bold text-[#0052cc] tracking-tight">{result}</div>
-                  )}
-
-                  <div className="flex justify-end gap-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setIsDemoModalOpen(false)}
-                      className="py-2.5 px-5 border border-black/10 rounded-xl font-bold text-xs hover:bg-black/5 transition cursor-pointer"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="py-2.5 px-6 bg-[#0052cc] hover:bg-[#0047b3] text-white rounded-xl font-bold text-xs transition disabled:opacity-50 cursor-pointer shadow-sm"
-                    >
-                      {isSubmitting ? "Submitting..." : "Submit & Connect"}
-                    </button>
-                  </div>
-                </form>
-
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -9,24 +9,24 @@ interface StandardItem {
 
 const standards: StandardItem[] = [
   {
-    dontSay: "Good voice quality",
-    say: "Crystal-clear Tier-1 SIP Trunking",
-    spec: "Zero-latency audio routing nodes via direct whitelisted carrier interconnects.",
+    dontSay: "Complex Hardware & PBX Setup",
+    say: "1-Click In-Browser Web Dashboard Calling",
+    spec: "Zero deskphones or complicated manual setups. Dial and text instantly from any Chrome, Safari, or mobile browser.",
   },
   {
-    dontSay: "Cheap minutes packages",
-    say: "Wholesale corporate volume slabs",
-    spec: "Enterprise-tier volume commitments with pay-as-you-go dynamic usage billing.",
+    dontSay: "Expensive Per-Agent Licensing Fees",
+    say: "Transparent Flat-Rate Team Plans",
+    spec: "Plans from $29/mo with multi-agent seats, dedicated US numbers, and preloaded talk minutes included.",
   },
   {
-    dontSay: "We give custom phone numbers",
-    say: "Localized Caller ID Rotation",
-    spec: "STIR/SHAKEN compliant localized DID provisioning to match target demographics.",
+    dontSay: "Locked Private Agent Numbers",
+    say: "Shared Business Lines & Smart Routing",
+    spec: "Assign numbers to your sales reps with customizable ring groups, auto-attendants, and warm transfers.",
   },
   {
-    dontSay: "It won't ban or block like consumer tools",
-    say: "Whitelisted Carrier Pools",
-    spec: "Natively bypass automated 'Spam Likely' filters by utilizing clean, non-recycled trunks.",
+    dontSay: "Hidden Add-ons for Recordings & Logs",
+    say: "100% Free HD Audio Recording & Logs",
+    spec: "Every inbound and outbound call is automatically recorded in HD with searchable timeline history and contact notes.",
   },
 ];
 
@@ -54,18 +54,24 @@ export default function Standards() {
   };
 
   return (
-    <section id="standards" className="w-full bg-[#f9fafb] py-8 md:py-12 px-4 md:px-8">
-      <div className="w-full max-w-[1720px] mx-auto px-6 md:px-12">
+    <section id="standards" className="w-full bg-[#f9fafb] pt-8 md:pt-12 pb-16 md:pb-24 px-4 md:px-8">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-12">
         
-        {/* Section Header */}
-        <div className="mb-8 max-w-[700px]">
-          <h2 className="text-2xl md:text-4xl font-semibold text-black tracking-tight mb-4">
-            How we specify performance
+        {/* Section Header with Scroll Reveal Animation */}
+        <motion.div 
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 md:mb-16 max-w-[750px] space-y-3"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.15]">
+            Modern workspace calling vs. legacy telecom.
           </h2>
-          <p className="text-sm text-black/60 leading-relaxed font-medium">
-            We don't use consumer marketing clichés. We build and document enterprise-grade telecom infrastructure designed for cold-calling floors.
+          <p className="text-sm sm:text-base text-slate-600 font-medium">
+            We removed the complicated technical hurdles. Here is how Astraventa makes business communication simple and accessible.
           </p>
-        </div>
+        </motion.div>
 
         {/* Comparison Grid */}
         <motion.div
@@ -79,7 +85,7 @@ export default function Standards() {
             <motion.div
               key={i}
               variants={itemVariants}
-              className="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.03)] border border-black/5 transition-all duration-300 min-h-[220px]"
+              className="bg-white rounded-[1.75rem] md:rounded-[2rem] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-[0_12px_40px_rgba(0,0,0,0.03)] border border-slate-200/80 transition-all duration-300 min-h-[220px]"
             >
               <div className="flex flex-col gap-4">
                 {/* Traditional / Don't Say */}
@@ -88,7 +94,7 @@ export default function Standards() {
                     <HelpCircle className="w-4 h-4" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-bold text-red-500/70 tracking-widest font-mono">Legacy Telecom Cliché</span>
+                    <span className="text-[10px] uppercase font-bold text-red-500/70 tracking-widest font-mono">Traditional Provider</span>
                     <span className="text-sm font-semibold text-black/40 line-through tracking-tight">
                       "{s.dontSay}"
                     </span>
@@ -107,7 +113,7 @@ export default function Standards() {
                     <ShieldCheck className="w-4 h-4" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-bold text-emerald-600 tracking-widest font-mono">RIVR Carrier Standard</span>
+                    <span className="text-[10px] uppercase font-bold text-emerald-600 tracking-widest font-mono">Astraventa Standard</span>
                     <span className="text-base md:text-lg font-heading font-semibold text-black tracking-tight">
                       {s.say}
                     </span>
@@ -116,7 +122,7 @@ export default function Standards() {
               </div>
 
               {/* Spec Subtext */}
-              <div className="border-t border-black/5 mt-6 pt-4 text-xs text-black/55 font-medium leading-relaxed font-mono">
+              <div className="border-t border-slate-100 mt-6 pt-4 text-xs text-slate-500 font-medium leading-relaxed">
                 {s.spec}
               </div>
 

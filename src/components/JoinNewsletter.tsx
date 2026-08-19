@@ -55,12 +55,12 @@ export default function JoinNewsletter() {
               Dynamic whitelisted SIP trunks are active for today's deployment. First setup credit is 100% risk-free.
             </p>
           </div>
-          <button 
-            onClick={() => window.dispatchEvent(new CustomEvent("open-request-modal"))}
-            className="bg-[#0052cc] hover:bg-[#0047b3] text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-all shadow-md active:scale-95 cursor-pointer whitespace-nowrap self-stretch md:self-auto text-center"
+          <a 
+            href="https://voice.astraventa.com/signup"
+            className="bg-[#0052cc] hover:bg-[#0047b3] text-white px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-all shadow-md active:scale-95 cursor-pointer whitespace-nowrap self-stretch md:self-auto text-center text-decoration-none"
           >
-            Deploy now
-          </button>
+            Start Free Trial
+          </a>
         </div>
 
         {/* Newsletter Signup Segment */}

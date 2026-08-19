@@ -1,7 +1,7 @@
 export default function Footer() {
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.dispatchEvent(new CustomEvent("open-request-modal"));
+    window.location.href = "https://voice.astraventa.com/signup";
   };
 
   return (

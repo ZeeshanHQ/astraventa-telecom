@@ -9,25 +9,25 @@ interface MetricItem {
 
 const metrics: MetricItem[] = [
   {
-    value: "45M+",
-    label: "Daily Routed Minutes",
-    sub: "Direct carrier routing via private hubs",
+    value: "99.99%",
+    label: "Carrier Uptime SLA",
+    sub: "Direct Tier-1 Telnyx voice interconnects",
   },
   {
-    value: "84.2%",
-    label: "Average Answer Rate",
-    sub: "Achieved by bypassing blacklisted pools",
+    value: "< 60s",
+    label: "Instant Number Setup",
+    sub: "Order US, Canada & 800 Toll-Free numbers",
   },
   {
-    value: "250K+",
-    label: "Whitelisted Active DIDs",
-    sub: "Clean localized DIDs rotating hourly",
+    value: "100%",
+    label: "Free HD Call Recording",
+    sub: "Unlimited audio logs & CRM contact notes",
   },
   {
     prefix: "<",
-    value: "180ms",
-    label: "Call Setup Latency",
-    sub: "Zero-latency audio routing nodes",
+    value: "120ms",
+    label: "WebRTC Audio Latency",
+    sub: "Crystal-clear browser calls without delays",
   },
 ];
 
